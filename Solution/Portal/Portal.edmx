@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tela_p3Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="tela_p3ModelStoreContainer">
+          <EntitySet Name="tb_prt_Control" EntityType="tela_p3Model.Store.tb_prt_Control" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_prt_Folder" EntityType="tela_p3Model.Store.tb_prt_Folder" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_prt_Page" EntityType="tela_p3Model.Store.tb_prt_Page" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_prt_Template" EntityType="tela_p3Model.Store.tb_prt_Template" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_prt_UrlMapping" EntityType="tela_p3Model.Store.tb_prt_UrlMapping" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tb_prt_Folder_IdFolderParent" Association="tela_p3Model.Store.FK_tb_prt_Folder_IdFolderParent">
+            <End Role="tb_prt_Folder" EntitySet="tb_prt_Folder" />
+            <End Role="tb_prt_Folder1" EntitySet="tb_prt_Folder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_prt_Page_IdFolder" Association="tela_p3Model.Store.FK_tb_prt_Page_IdFolder">
+            <End Role="tb_prt_Folder" EntitySet="tb_prt_Folder" />
+            <End Role="tb_prt_Page" EntitySet="tb_prt_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_prt_Page_IdTemplate" Association="tela_p3Model.Store.FK_tb_prt_Page_IdTemplate">
+            <End Role="tb_prt_Template" EntitySet="tb_prt_Template" />
+            <End Role="tb_prt_Page" EntitySet="tb_prt_Page" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_prt_Control">
+          <Key>
+            <PropertyRef Name="IdControl" />
+          </Key>
+          <Property Name="IdControl" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdModule" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="Class" Type="varchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="tb_prt_Folder">
+          <Key>
+            <PropertyRef Name="IdFolder" />
+          </Key>
+          <Property Name="IdFolder" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdWebSite" Type="int" Nullable="false" />
+          <Property Name="IdFolderParent" Type="int" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_prt_Page">
+          <Key>
+            <PropertyRef Name="IdPage" />
+          </Key>
+          <Property Name="IdPage" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdTemplate" Type="int" />
+          <Property Name="IdFolder" Type="int" Nullable="false" />
+          <Property Name="IdWebSite" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Url" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Html" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_prt_Template">
+          <Key>
+            <PropertyRef Name="IdTemplate" />
+          </Key>
+          <Property Name="IdTemplate" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Html" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_prt_UrlMapping">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+            <PropertyRef Name="UrlFrom" />
+          </Key>
+          <Property Name="IdWebSite" Type="int" Nullable="false" />
+          <Property Name="UrlFrom" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="UrlTo" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="DtFrom" Type="smalldatetime" />
+          <Property Name="DtTo" Type="smalldatetime" />
+        </EntityType>
+        <Association Name="FK_tb_prt_Folder_IdFolderParent">
+          <End Role="tb_prt_Folder" Type="tela_p3Model.Store.tb_prt_Folder" Multiplicity="0..1" />
+          <End Role="tb_prt_Folder1" Type="tela_p3Model.Store.tb_prt_Folder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_prt_Folder">
+              <PropertyRef Name="IdFolder" />
+            </Principal>
+            <Dependent Role="tb_prt_Folder1">
+              <PropertyRef Name="IdFolderParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_prt_Page_IdFolder">
+          <End Role="tb_prt_Folder" Type="tela_p3Model.Store.tb_prt_Folder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_prt_Page" Type="tela_p3Model.Store.tb_prt_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_prt_Folder">
+              <PropertyRef Name="IdFolder" />
+            </Principal>
+            <Dependent Role="tb_prt_Page">
+              <PropertyRef Name="IdFolder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_prt_Page_IdTemplate">
+          <End Role="tb_prt_Template" Type="tela_p3Model.Store.tb_prt_Template" Multiplicity="0..1" />
+          <End Role="tb_prt_Page" Type="tela_p3Model.Store.tb_prt_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_prt_Template">
+              <PropertyRef Name="IdTemplate" />
+            </Principal>
+            <Dependent Role="tb_prt_Page">
+              <PropertyRef Name="IdTemplate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tela_p3Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_prt_Control" EntityType="tela_p3Model.tb_prt_Control" />
+          <EntitySet Name="tb_prt_Folder" EntityType="tela_p3Model.tb_prt_Folder" />
+          <EntitySet Name="tb_prt_Page" EntityType="tela_p3Model.tb_prt_Page" />
+          <EntitySet Name="tb_prt_Template" EntityType="tela_p3Model.tb_prt_Template" />
+          <EntitySet Name="tb_prt_UrlMapping" EntityType="tela_p3Model.tb_prt_UrlMapping" />
+          <AssociationSet Name="FK_tb_prt_Folder_IdFolderParent" Association="tela_p3Model.FK_tb_prt_Folder_IdFolderParent">
+            <End Role="tb_prt_Folder" EntitySet="tb_prt_Folder" />
+            <End Role="tb_prt_Folder1" EntitySet="tb_prt_Folder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_prt_Page_IdFolder" Association="tela_p3Model.FK_tb_prt_Page_IdFolder">
+            <End Role="tb_prt_Folder" EntitySet="tb_prt_Folder" />
+            <End Role="tb_prt_Page" EntitySet="tb_prt_Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_prt_Page_IdTemplate" Association="tela_p3Model.FK_tb_prt_Page_IdTemplate">
+            <End Role="tb_prt_Template" EntitySet="tb_prt_Template" />
+            <End Role="tb_prt_Page" EntitySet="tb_prt_Page" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_prt_Control">
+          <Key>
+            <PropertyRef Name="IdControl" />
+          </Key>
+          <Property Name="IdControl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdModule" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="Class" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tb_prt_Folder">
+          <Key>
+            <PropertyRef Name="IdFolder" />
+          </Key>
+          <Property Name="IdFolder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdWebSite" Type="Int32" Nullable="false" />
+          <Property Name="IdFolderParent" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tb_prt_Folder1" Relationship="tela_p3Model.FK_tb_prt_Folder_IdFolderParent" FromRole="tb_prt_Folder" ToRole="tb_prt_Folder1" />
+          <NavigationProperty Name="tb_prt_Folder2" Relationship="tela_p3Model.FK_tb_prt_Folder_IdFolderParent" FromRole="tb_prt_Folder1" ToRole="tb_prt_Folder" />
+          <NavigationProperty Name="tb_prt_Page" Relationship="tela_p3Model.FK_tb_prt_Page_IdFolder" FromRole="tb_prt_Folder" ToRole="tb_prt_Page" />
+        </EntityType>
+        <EntityType Name="tb_prt_Page">
+          <Key>
+            <PropertyRef Name="IdPage" />
+          </Key>
+          <Property Name="IdPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTemplate" Type="Int32" />
+          <Property Name="IdFolder" Type="Int32" Nullable="false" />
+          <Property Name="IdWebSite" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Html" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tb_prt_Folder" Relationship="tela_p3Model.FK_tb_prt_Page_IdFolder" FromRole="tb_prt_Page" ToRole="tb_prt_Folder" />
+          <NavigationProperty Name="tb_prt_Template" Relationship="tela_p3Model.FK_tb_prt_Page_IdTemplate" FromRole="tb_prt_Page" ToRole="tb_prt_Template" />
+        </EntityType>
+        <EntityType Name="tb_prt_Template">
+          <Key>
+            <PropertyRef Name="IdTemplate" />
+          </Key>
+          <Property Name="IdTemplate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Html" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tb_prt_Page" Relationship="tela_p3Model.FK_tb_prt_Page_IdTemplate" FromRole="tb_prt_Template" ToRole="tb_prt_Page" />
+        </EntityType>
+        <EntityType Name="tb_prt_UrlMapping">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+            <PropertyRef Name="UrlFrom" />
+          </Key>
+          <Property Name="IdWebSite" Type="Int32" Nullable="false" />
+          <Property Name="UrlFrom" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="UrlTo" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="DtFrom" Type="DateTime" />
+          <Property Name="DtTo" Type="DateTime" />
+        </EntityType>
+        <Association Name="FK_tb_prt_Folder_IdFolderParent">
+          <End Role="tb_prt_Folder" Type="tela_p3Model.tb_prt_Folder" Multiplicity="0..1" />
+          <End Role="tb_prt_Folder1" Type="tela_p3Model.tb_prt_Folder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_prt_Folder">
+              <PropertyRef Name="IdFolder" />
+            </Principal>
+            <Dependent Role="tb_prt_Folder1">
+              <PropertyRef Name="IdFolderParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_prt_Page_IdFolder">
+          <End Role="tb_prt_Folder" Type="tela_p3Model.tb_prt_Folder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tb_prt_Page" Type="tela_p3Model.tb_prt_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_prt_Folder">
+              <PropertyRef Name="IdFolder" />
+            </Principal>
+            <Dependent Role="tb_prt_Page">
+              <PropertyRef Name="IdFolder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_prt_Page_IdTemplate">
+          <End Role="tb_prt_Template" Type="tela_p3Model.tb_prt_Template" Multiplicity="0..1" />
+          <End Role="tb_prt_Page" Type="tela_p3Model.tb_prt_Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_prt_Template">
+              <PropertyRef Name="IdTemplate" />
+            </Principal>
+            <Dependent Role="tb_prt_Page">
+              <PropertyRef Name="IdTemplate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tela_p3ModelStoreContainer" CdmEntityContainer="PortalEntities">
+          <EntitySetMapping Name="tb_prt_Control"><EntityTypeMapping TypeName="tela_p3Model.tb_prt_Control"><MappingFragment StoreEntitySet="tb_prt_Control">
+            <ScalarProperty Name="IdControl" ColumnName="IdControl" />
+            <ScalarProperty Name="IdModule" ColumnName="IdModule" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Class" ColumnName="Class" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tb_prt_Folder"><EntityTypeMapping TypeName="tela_p3Model.tb_prt_Folder"><MappingFragment StoreEntitySet="tb_prt_Folder">
+            <ScalarProperty Name="IdFolder" ColumnName="IdFolder" />
+            <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+            <ScalarProperty Name="IdFolderParent" ColumnName="IdFolderParent" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tb_prt_Page"><EntityTypeMapping TypeName="tela_p3Model.tb_prt_Page"><MappingFragment StoreEntitySet="tb_prt_Page">
+            <ScalarProperty Name="IdPage" ColumnName="IdPage" />
+            <ScalarProperty Name="IdTemplate" ColumnName="IdTemplate" />
+            <ScalarProperty Name="IdFolder" ColumnName="IdFolder" />
+            <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Url" ColumnName="Url" />
+            <ScalarProperty Name="Html" ColumnName="Html" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tb_prt_Template"><EntityTypeMapping TypeName="tela_p3Model.tb_prt_Template"><MappingFragment StoreEntitySet="tb_prt_Template">
+            <ScalarProperty Name="IdTemplate" ColumnName="IdTemplate" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Html" ColumnName="Html" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tb_prt_UrlMapping"><EntityTypeMapping TypeName="tela_p3Model.tb_prt_UrlMapping"><MappingFragment StoreEntitySet="tb_prt_UrlMapping">
+            <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+            <ScalarProperty Name="UrlFrom" ColumnName="UrlFrom" />
+            <ScalarProperty Name="UrlTo" ColumnName="UrlTo" />
+            <ScalarProperty Name="DtFrom" ColumnName="DtFrom" />
+            <ScalarProperty Name="DtTo" ColumnName="DtTo" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Portal" ZoomLevel="97">
+        <EntityTypeShape EntityType="tela_p3Model.tb_prt_Control" Width="1.5" PointX="3" PointY="4.25" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="tela_p3Model.tb_prt_Folder" Width="1.5" PointX="0.75" PointY="1" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="tela_p3Model.tb_prt_Page" Width="1.5" PointX="3" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="tela_p3Model.tb_prt_Template" Width="1.5" PointX="5.375" PointY="1" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="tela_p3Model.tb_prt_UrlMapping" Width="1.5" PointX="0.75" PointY="4.25" Height="1.9802864583333317" IsExpanded="true" />
+        <AssociationConnector Association="tela_p3Model.FK_tb_prt_Folder_IdFolderParent" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.2819230769230767" PointY="3.3648893229166674" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="3.6148893229166674" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="3.6148893229166674" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="3.3648893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="tela_p3Model.FK_tb_prt_Page_IdFolder" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.1824446614583337" />
+          <ConnectorPoint PointX="3" PointY="2.1824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="tela_p3Model.FK_tb_prt_Page_IdTemplate" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.375" PointY="1.8939925130208328" />
+          <ConnectorPoint PointX="4.5" PointY="1.8939925130208328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

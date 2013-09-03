@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ArchiveModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ArchiveModelStoreContainer">
+          <EntitySet Name="tb_arc_Archive" EntityType="ArchiveModel.Store.tb_arc_Archive" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_arc_ArchiveType" EntityType="ArchiveModel.Store.tb_arc_ArchiveType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tb_arc_Archive_IdArchiveType" Association="ArchiveModel.Store.FK_tb_arc_Archive_IdArchiveType">
+            <End Role="tb_arc_ArchiveType" EntitySet="tb_arc_ArchiveType" />
+            <End Role="tb_arc_Archive" EntitySet="tb_arc_Archive" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_arc_Archive">
+          <Key>
+            <PropertyRef Name="IdArchive" />
+          </Key>
+          <Property Name="IdArchive" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdArchiveType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
+          <Property Name="Path" Type="varchar" Nullable="false" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="tb_arc_ArchiveType">
+          <Key>
+            <PropertyRef Name="IdArchiveType" />
+          </Key>
+          <Property Name="IdArchiveType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
+          <Property Name="Extension" Type="varchar" MaxLength="4" />
+          <Property Name="MaxSize" Type="int" />
+        </EntityType>
+        <Association Name="FK_tb_arc_Archive_IdArchiveType">
+          <End Role="tb_arc_ArchiveType" Type="ArchiveModel.Store.tb_arc_ArchiveType" Multiplicity="1" />
+          <End Role="tb_arc_Archive" Type="ArchiveModel.Store.tb_arc_Archive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_arc_ArchiveType">
+              <PropertyRef Name="IdArchiveType" />
+            </Principal>
+            <Dependent Role="tb_arc_Archive">
+              <PropertyRef Name="IdArchiveType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArchiveModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_arc_Archive" EntityType="ArchiveModel.tb_arc_Archive" />
+          <EntitySet Name="tb_arc_ArchiveType" EntityType="ArchiveModel.tb_arc_ArchiveType" />
+          <AssociationSet Name="FK_tb_arc_Archive_IdArchiveType" Association="ArchiveModel.FK_tb_arc_Archive_IdArchiveType">
+            <End Role="tb_arc_ArchiveType" EntitySet="tb_arc_ArchiveType" />
+            <End Role="tb_arc_Archive" EntitySet="tb_arc_Archive" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_arc_Archive">
+          <Key>
+            <PropertyRef Name="IdArchive" />
+          </Key>
+          <Property Name="IdArchive" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdArchiveType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tb_arc_ArchiveType" Relationship="ArchiveModel.FK_tb_arc_Archive_IdArchiveType" FromRole="tb_arc_Archive" ToRole="tb_arc_ArchiveType" />
+        </EntityType>
+        <EntityType Name="tb_arc_ArchiveType">
+          <Key>
+            <PropertyRef Name="IdArchiveType" />
+          </Key>
+          <Property Name="IdArchiveType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="Extension" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="MaxSize" Type="Int32" />
+          <NavigationProperty Name="tb_arc_Archive" Relationship="ArchiveModel.FK_tb_arc_Archive_IdArchiveType" FromRole="tb_arc_ArchiveType" ToRole="tb_arc_Archive" />
+        </EntityType>
+        <Association Name="FK_tb_arc_Archive_IdArchiveType">
+          <End Role="tb_arc_ArchiveType" Type="ArchiveModel.tb_arc_ArchiveType" Multiplicity="1" />
+          <End Role="tb_arc_Archive" Type="ArchiveModel.tb_arc_Archive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_arc_ArchiveType">
+              <PropertyRef Name="IdArchiveType" />
+            </Principal>
+            <Dependent Role="tb_arc_Archive">
+              <PropertyRef Name="IdArchiveType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ArchiveModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="tb_arc_Archive"><EntityTypeMapping TypeName="ArchiveModel.tb_arc_Archive"><MappingFragment StoreEntitySet="tb_arc_Archive">
+            <ScalarProperty Name="IdArchive" ColumnName="IdArchive" />
+            <ScalarProperty Name="IdArchiveType" ColumnName="IdArchiveType" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tb_arc_ArchiveType"><EntityTypeMapping TypeName="ArchiveModel.tb_arc_ArchiveType"><MappingFragment StoreEntitySet="tb_arc_ArchiveType">
+            <ScalarProperty Name="IdArchiveType" ColumnName="IdArchiveType" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Extension" ColumnName="Extension" />
+            <ScalarProperty Name="MaxSize" ColumnName="MaxSize" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Archive">
+        <EntityTypeShape EntityType="ArchiveModel.tb_arc_Archive" Width="1.5" PointX="3" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArchiveModel.tb_arc_ArchiveType" Width="1.5" PointX="0.75" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
+        <AssociationConnector Association="ArchiveModel.FK_tb_arc_Archive_IdArchiveType" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.8651432291666668" />
+          <ConnectorPoint PointX="3" PointY="1.8651432291666668" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
