@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("ArchiveModel", "FK_tb_arc_Archive_IdArchiveType", "tb_arc_ArchiveType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Archive.tb_arc_ArchiveType), "tb_arc_Archive", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Archive.tb_arc_Archive), true)]
+[assembly: EdmRelationshipAttribute("ArchiveModel", "FK_arcArchive_IdArchiveType", "arcArchiveType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Archive.arcArchiveType), "arcArchive", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Archive.arcArchive), true)]
 
 #endregion
 
@@ -29,32 +29,32 @@ namespace Archive
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class Entities : ObjectContext
+    public partial class ArchiveEntities : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new Entities object using the connection string found in the 'Entities' section of the application configuration file.
+        /// Initializes a new ArchiveEntities object using the connection string found in the 'ArchiveEntities' section of the application configuration file.
         /// </summary>
-        public Entities() : base("name=Entities", "Entities")
+        public ArchiveEntities() : base("name=ArchiveEntities", "ArchiveEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new Entities object.
+        /// Initialize a new ArchiveEntities object.
         /// </summary>
-        public Entities(string connectionString) : base(connectionString, "Entities")
+        public ArchiveEntities(string connectionString) : base(connectionString, "ArchiveEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new Entities object.
+        /// Initialize a new ArchiveEntities object.
         /// </summary>
-        public Entities(EntityConnection connection) : base(connection, "Entities")
+        public ArchiveEntities(EntityConnection connection) : base(connection, "ArchiveEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -73,52 +73,52 @@ namespace Archive
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_arc_Archive> tb_arc_Archive
+        public ObjectSet<arcArchive> arcArchives
         {
             get
             {
-                if ((_tb_arc_Archive == null))
+                if ((_arcArchives == null))
                 {
-                    _tb_arc_Archive = base.CreateObjectSet<tb_arc_Archive>("tb_arc_Archive");
+                    _arcArchives = base.CreateObjectSet<arcArchive>("arcArchives");
                 }
-                return _tb_arc_Archive;
+                return _arcArchives;
             }
         }
-        private ObjectSet<tb_arc_Archive> _tb_arc_Archive;
+        private ObjectSet<arcArchive> _arcArchives;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_arc_ArchiveType> tb_arc_ArchiveType
+        public ObjectSet<arcArchiveType> arcArchiveTypes
         {
             get
             {
-                if ((_tb_arc_ArchiveType == null))
+                if ((_arcArchiveTypes == null))
                 {
-                    _tb_arc_ArchiveType = base.CreateObjectSet<tb_arc_ArchiveType>("tb_arc_ArchiveType");
+                    _arcArchiveTypes = base.CreateObjectSet<arcArchiveType>("arcArchiveTypes");
                 }
-                return _tb_arc_ArchiveType;
+                return _arcArchiveTypes;
             }
         }
-        private ObjectSet<tb_arc_ArchiveType> _tb_arc_ArchiveType;
+        private ObjectSet<arcArchiveType> _arcArchiveTypes;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_arc_Archive EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the arcArchives EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_arc_Archive(tb_arc_Archive tb_arc_Archive)
+        public void AddToarcArchives(arcArchive arcArchive)
         {
-            base.AddObject("tb_arc_Archive", tb_arc_Archive);
+            base.AddObject("arcArchives", arcArchive);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_arc_ArchiveType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the arcArchiveTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_arc_ArchiveType(tb_arc_ArchiveType tb_arc_ArchiveType)
+        public void AddToarcArchiveTypes(arcArchiveType arcArchiveType)
         {
-            base.AddObject("tb_arc_ArchiveType", tb_arc_ArchiveType);
+            base.AddObject("arcArchiveTypes", arcArchiveType);
         }
 
         #endregion
@@ -132,28 +132,28 @@ namespace Archive
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="ArchiveModel", Name="tb_arc_Archive")]
+    [EdmEntityTypeAttribute(NamespaceName="ArchiveModel", Name="arcArchive")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_arc_Archive : EntityObject
+    public partial class arcArchive : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_arc_Archive object.
+        /// Create a new arcArchive object.
         /// </summary>
         /// <param name="idArchive">Initial value of the IdArchive property.</param>
         /// <param name="idArchiveType">Initial value of the IdArchiveType property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="path">Initial value of the Path property.</param>
-        public static tb_arc_Archive Createtb_arc_Archive(global::System.Int32 idArchive, global::System.Int32 idArchiveType, global::System.String name, global::System.String path)
+        public static arcArchive CreatearcArchive(global::System.Int32 idArchive, global::System.Int32 idArchiveType, global::System.String name, global::System.String path)
         {
-            tb_arc_Archive tb_arc_Archive = new tb_arc_Archive();
-            tb_arc_Archive.IdArchive = idArchive;
-            tb_arc_Archive.IdArchiveType = idArchiveType;
-            tb_arc_Archive.Name = name;
-            tb_arc_Archive.Path = path;
-            return tb_arc_Archive;
+            arcArchive arcArchive = new arcArchive();
+            arcArchive.IdArchive = idArchive;
+            arcArchive.IdArchiveType = idArchiveType;
+            arcArchive.Name = name;
+            arcArchive.Path = path;
+            return arcArchive;
         }
 
         #endregion
@@ -268,16 +268,16 @@ namespace Archive
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ArchiveModel", "FK_tb_arc_Archive_IdArchiveType", "tb_arc_ArchiveType")]
-        public tb_arc_ArchiveType tb_arc_ArchiveType
+        [EdmRelationshipNavigationPropertyAttribute("ArchiveModel", "FK_arcArchive_IdArchiveType", "arcArchiveType")]
+        public arcArchiveType arcArchiveType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_arc_ArchiveType>("ArchiveModel.FK_tb_arc_Archive_IdArchiveType", "tb_arc_ArchiveType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<arcArchiveType>("ArchiveModel.FK_arcArchive_IdArchiveType", "arcArchiveType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_arc_ArchiveType>("ArchiveModel.FK_tb_arc_Archive_IdArchiveType", "tb_arc_ArchiveType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<arcArchiveType>("ArchiveModel.FK_arcArchive_IdArchiveType", "arcArchiveType").Value = value;
             }
         }
         /// <summary>
@@ -285,17 +285,17 @@ namespace Archive
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<tb_arc_ArchiveType> tb_arc_ArchiveTypeReference
+        public EntityReference<arcArchiveType> arcArchiveTypeReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_arc_ArchiveType>("ArchiveModel.FK_tb_arc_Archive_IdArchiveType", "tb_arc_ArchiveType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<arcArchiveType>("ArchiveModel.FK_arcArchive_IdArchiveType", "arcArchiveType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tb_arc_ArchiveType>("ArchiveModel.FK_tb_arc_Archive_IdArchiveType", "tb_arc_ArchiveType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<arcArchiveType>("ArchiveModel.FK_arcArchive_IdArchiveType", "arcArchiveType", value);
                 }
             }
         }
@@ -306,24 +306,24 @@ namespace Archive
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="ArchiveModel", Name="tb_arc_ArchiveType")]
+    [EdmEntityTypeAttribute(NamespaceName="ArchiveModel", Name="arcArchiveType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_arc_ArchiveType : EntityObject
+    public partial class arcArchiveType : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_arc_ArchiveType object.
+        /// Create a new arcArchiveType object.
         /// </summary>
         /// <param name="idArchiveType">Initial value of the IdArchiveType property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static tb_arc_ArchiveType Createtb_arc_ArchiveType(global::System.Int32 idArchiveType, global::System.String name)
+        public static arcArchiveType CreatearcArchiveType(global::System.Int32 idArchiveType, global::System.String name)
         {
-            tb_arc_ArchiveType tb_arc_ArchiveType = new tb_arc_ArchiveType();
-            tb_arc_ArchiveType.IdArchiveType = idArchiveType;
-            tb_arc_ArchiveType.Name = name;
-            return tb_arc_ArchiveType;
+            arcArchiveType arcArchiveType = new arcArchiveType();
+            arcArchiveType.IdArchiveType = idArchiveType;
+            arcArchiveType.Name = name;
+            return arcArchiveType;
         }
 
         #endregion
@@ -438,18 +438,18 @@ namespace Archive
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ArchiveModel", "FK_tb_arc_Archive_IdArchiveType", "tb_arc_Archive")]
-        public EntityCollection<tb_arc_Archive> tb_arc_Archive
+        [EdmRelationshipNavigationPropertyAttribute("ArchiveModel", "FK_arcArchive_IdArchiveType", "arcArchive")]
+        public EntityCollection<arcArchive> arcArchives
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tb_arc_Archive>("ArchiveModel.FK_tb_arc_Archive_IdArchiveType", "tb_arc_Archive");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<arcArchive>("ArchiveModel.FK_arcArchive_IdArchiveType", "arcArchive");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_arc_Archive>("ArchiveModel.FK_tb_arc_Archive_IdArchiveType", "tb_arc_Archive", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<arcArchive>("ArchiveModel.FK_arcArchive_IdArchiveType", "arcArchive", value);
                 }
             }
         }

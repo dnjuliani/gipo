@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AccountModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AccountModelStoreContainer">
+          <EntitySet Name="accAdministrator" EntityType="AccountModel.Store.accAdministrator" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accModule" EntityType="AccountModel.Store.accModule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accPermission" EntityType="AccountModel.Store.accPermission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accProfile" EntityType="AccountModel.Store.accProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accProfilePermission" EntityType="AccountModel.Store.accProfilePermission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accWebSite" EntityType="AccountModel.Store.accWebSite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accWebSiteConfig" EntityType="AccountModel.Store.accWebSiteConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accWebSiteModule" EntityType="AccountModel.Store.accWebSiteModule" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="accAdministrator">
+          <Key>
+            <PropertyRef Name="IdPerson" />
+          </Key>
+          <Property Name="IdPerson" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfile" Type="int" Nullable="false" />
+          <Property Name="CodeName" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Login" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="accModule">
+          <Key>
+            <PropertyRef Name="IdModule" />
+          </Key>
+          <Property Name="IdModule" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="Description" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="accPermission">
+          <Key>
+            <PropertyRef Name="IdPermission" />
+          </Key>
+          <Property Name="IdPermission" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdModule" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accProfile">
+          <Key>
+            <PropertyRef Name="IdProfile" />
+          </Key>
+          <Property Name="IdProfile" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="accProfilePermission">
+          <Key>
+            <PropertyRef Name="IdProfile" />
+            <PropertyRef Name="IdPermission" />
+          </Key>
+          <Property Name="IdProfile" Type="int" Nullable="false" />
+          <Property Name="IdPermission" Type="int" Nullable="false" />
+          <Property Name="Create" Type="bit" Nullable="false" />
+          <Property Name="Read" Type="bit" Nullable="false" />
+          <Property Name="Update" Type="bit" Nullable="false" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accWebSite">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+          </Key>
+          <Property Name="IdWebSite" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="16" />
+          <Property Name="IsMaintenance" Type="bit" Nullable="false" />
+          <Property Name="Domain" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="DomainGipo" Type="varchar" Nullable="false" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="accWebSiteConfig">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+          </Key>
+          <Property Name="IdWebSite" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accWebSiteModule">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+            <PropertyRef Name="IdModule" />
+          </Key>
+          <Property Name="IdWebSite" Type="int" Nullable="false" />
+          <Property Name="IdModule" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AccountModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AccountEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accAdministrators" EntityType="AccountModel.accAdministrator" />
+          <EntitySet Name="accModules" EntityType="AccountModel.accModule" />
+          <EntitySet Name="accPermissions" EntityType="AccountModel.accPermission" />
+          <EntitySet Name="accProfiles" EntityType="AccountModel.accProfile" />
+          <EntitySet Name="accProfilePermissions" EntityType="AccountModel.accProfilePermission" />
+          <EntitySet Name="accWebSiteConfigs" EntityType="AccountModel.accWebSiteConfig" />
+          <EntitySet Name="accWebSiteModules" EntityType="AccountModel.accWebSiteModule" />
+          <EntitySet Name="accWebSites" EntityType="AccountModel.accWebSite" />
+        </EntityContainer>
+        <EntityType Name="accAdministrator">
+          <Key>
+            <PropertyRef Name="IdPerson" />
+          </Key>
+          <Property Name="IdPerson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfile" Type="Int32" Nullable="false" />
+          <Property Name="CodeName" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="accModule">
+          <Key>
+            <PropertyRef Name="IdModule" />
+          </Key>
+          <Property Name="IdModule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="accPermission">
+          <Key>
+            <PropertyRef Name="IdPermission" />
+          </Key>
+          <Property Name="IdPermission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdModule" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accProfile">
+          <Key>
+            <PropertyRef Name="IdProfile" />
+          </Key>
+          <Property Name="IdProfile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="accProfilePermission">
+          <Key>
+            <PropertyRef Name="IdProfile" />
+            <PropertyRef Name="IdPermission" />
+          </Key>
+          <Property Name="IdProfile" Type="Int32" Nullable="false" />
+          <Property Name="IdPermission" Type="Int32" Nullable="false" />
+          <Property Name="Create" Type="Boolean" Nullable="false" />
+          <Property Name="Read" Type="Boolean" Nullable="false" />
+          <Property Name="Update" Type="Boolean" Nullable="false" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accWebSiteConfig">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+          </Key>
+          <Property Name="IdWebSite" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accWebSiteModule">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+            <PropertyRef Name="IdModule" />
+          </Key>
+          <Property Name="IdWebSite" Type="Int32" Nullable="false" />
+          <Property Name="IdModule" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accWebSite">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+          </Key>
+          <Property Type="Int32" Name="IdWebSite" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsMaintenance" Nullable="false" />
+          <Property Type="String" Name="Domain" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DomainGipo" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AccountModelStoreContainer" CdmEntityContainer="AccountEntities">
+          <EntitySetMapping Name="accAdministrators"><EntityTypeMapping TypeName="AccountModel.accAdministrator"><MappingFragment StoreEntitySet="accAdministrator">
+            <ScalarProperty Name="IdPerson" ColumnName="IdPerson" />
+            <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
+            <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Login" ColumnName="Login" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accModules"><EntityTypeMapping TypeName="AccountModel.accModule"><MappingFragment StoreEntitySet="accModule">
+            <ScalarProperty Name="IdModule" ColumnName="IdModule" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accPermissions"><EntityTypeMapping TypeName="AccountModel.accPermission"><MappingFragment StoreEntitySet="accPermission">
+            <ScalarProperty Name="IdPermission" ColumnName="IdPermission" />
+            <ScalarProperty Name="IdModule" ColumnName="IdModule" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accProfiles"><EntityTypeMapping TypeName="AccountModel.accProfile"><MappingFragment StoreEntitySet="accProfile">
+            <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accProfilePermissions"><EntityTypeMapping TypeName="AccountModel.accProfilePermission"><MappingFragment StoreEntitySet="accProfilePermission">
+            <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
+            <ScalarProperty Name="IdPermission" ColumnName="IdPermission" />
+            <ScalarProperty Name="Create" ColumnName="Create" />
+            <ScalarProperty Name="Read" ColumnName="Read" />
+            <ScalarProperty Name="Update" ColumnName="Update" />
+            <ScalarProperty Name="Delete" ColumnName="Delete" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accWebSiteConfigs"><EntityTypeMapping TypeName="AccountModel.accWebSiteConfig"><MappingFragment StoreEntitySet="accWebSiteConfig">
+            <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accWebSiteModules"><EntityTypeMapping TypeName="AccountModel.accWebSiteModule"><MappingFragment StoreEntitySet="accWebSiteModule">
+            <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+            <ScalarProperty Name="IdModule" ColumnName="IdModule" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accWebSites">
+            <EntityTypeMapping TypeName="AccountModel.accWebSite">
+              <MappingFragment StoreEntitySet="accWebSite">
+                <ScalarProperty Name="DomainGipo" ColumnName="DomainGipo" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="IsMaintenance" ColumnName="IsMaintenance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Account">
+        <EntityTypeShape EntityType="AccountModel.accAdministrator" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accModule" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accPermission" Width="1.5" PointX="0.75" PointY="3.75" Height="1.4033821614583322" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accProfile" Width="1.5" PointX="2.75" PointY="3.75" Height="1.4033821614583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accProfilePermission" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accWebSiteConfig" Width="1.5" PointX="6.75" PointY="0.75" Height="1.2110807291666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accWebSiteModule" Width="1.5" PointX="0.75" PointY="6.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.accWebSite" Width="1.5" PointX="5.375" PointY="3.75" Height="1.9802864583333317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

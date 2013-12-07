@@ -4,35 +4,36 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConnectionModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ConnectionModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ConnectionModelStoreContainer">
-          <EntitySet Name="tb_con_Connection" EntityType="ConnectionModel.Store.tb_con_Connection" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="conConnection" EntityType="ConnectionModel.Store.conConnection" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
-        <EntityType Name="tb_con_Connection">
+        <EntityType Name="conConnection">
           <Key>
             <PropertyRef Name="IdConnection" />
           </Key>
           <Property Name="IdConnection" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="32" />
-          <Property Name="Site" Type="varchar" Nullable="false" MaxLength="128" />
-          <Property Name="ConnectionString" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ConnectionString" Type="varchar" Nullable="false" MaxLength="512" />
+          <Property Name="Domain" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="DomainGipo" Type="varchar" Nullable="false" MaxLength="128" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConnectionModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ConnectionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tb_con_Connection" EntityType="ConnectionModel.tb_con_Connection" />
+          <EntitySet Name="conConnections" EntityType="ConnectionModel.conConnection" />
         </EntityContainer>
-        <EntityType Name="tb_con_Connection">
+        <EntityType Name="conConnection">
           <Key>
             <PropertyRef Name="IdConnection" />
           </Key>
-          <Property Name="IdConnection" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
-          <Property Name="Site" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="ConnectionString" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="IdConnection" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConnectionString" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Domain" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DomainGipo" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -40,12 +41,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ConnectionModelStoreContainer" CdmEntityContainer="ConnectionEntities">
-          <EntitySetMapping Name="tb_con_Connection"><EntityTypeMapping TypeName="ConnectionModel.tb_con_Connection"><MappingFragment StoreEntitySet="tb_con_Connection">
-            <ScalarProperty Name="IdConnection" ColumnName="IdConnection" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Site" ColumnName="Site" />
-            <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="conConnections">
+            <EntityTypeMapping TypeName="ConnectionModel.conConnection">
+              <MappingFragment StoreEntitySet="conConnection">
+                <ScalarProperty Name="DomainGipo" ColumnName="DomainGipo" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdConnection" ColumnName="IdConnection" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -67,7 +73,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Connection">
-        <EntityTypeShape EntityType="ConnectionModel.tb_con_Connection" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConnectionModel.conConnection" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333335" />
       </Diagram>
     </Diagrams>
   </Designer>

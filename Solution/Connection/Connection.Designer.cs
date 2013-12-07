@@ -68,63 +68,65 @@ namespace Connection
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_con_Connection> tb_con_Connection
+        public ObjectSet<conConnection> conConnections
         {
             get
             {
-                if ((_tb_con_Connection == null))
+                if ((_conConnections == null))
                 {
-                    _tb_con_Connection = base.CreateObjectSet<tb_con_Connection>("tb_con_Connection");
+                    _conConnections = base.CreateObjectSet<conConnection>("conConnections");
                 }
-                return _tb_con_Connection;
+                return _conConnections;
             }
         }
-        private ObjectSet<tb_con_Connection> _tb_con_Connection;
+        private ObjectSet<conConnection> _conConnections;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_con_Connection EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the conConnections EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_con_Connection(tb_con_Connection tb_con_Connection)
+        public void AddToconConnections(conConnection conConnection)
         {
-            base.AddObject("tb_con_Connection", tb_con_Connection);
+            base.AddObject("conConnections", conConnection);
         }
 
         #endregion
     }
-
+    
 
     #endregion
-
+    
     #region Entities
-
+    
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="ConnectionModel", Name="tb_con_Connection")]
+    [EdmEntityTypeAttribute(NamespaceName="ConnectionModel", Name="conConnection")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_con_Connection : EntityObject
+    public partial class conConnection : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_con_Connection object.
+        /// Create a new conConnection object.
         /// </summary>
         /// <param name="idConnection">Initial value of the IdConnection property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="site">Initial value of the Site property.</param>
         /// <param name="connectionString">Initial value of the ConnectionString property.</param>
-        public static tb_con_Connection Createtb_con_Connection(global::System.Int32 idConnection, global::System.String name, global::System.String site, global::System.String connectionString)
+        /// <param name="domain">Initial value of the Domain property.</param>
+        /// <param name="domainGipo">Initial value of the DomainGipo property.</param>
+        public static conConnection CreateconConnection(global::System.Int32 idConnection, global::System.String name, global::System.String connectionString, global::System.String domain, global::System.String domainGipo)
         {
-            tb_con_Connection tb_con_Connection = new tb_con_Connection();
-            tb_con_Connection.IdConnection = idConnection;
-            tb_con_Connection.Name = name;
-            tb_con_Connection.Site = site;
-            tb_con_Connection.ConnectionString = connectionString;
-            return tb_con_Connection;
+            conConnection conConnection = new conConnection();
+            conConnection.IdConnection = idConnection;
+            conConnection.Name = name;
+            conConnection.ConnectionString = connectionString;
+            conConnection.Domain = domain;
+            conConnection.DomainGipo = domainGipo;
+            return conConnection;
         }
 
         #endregion
@@ -186,30 +188,6 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Site
-        {
-            get
-            {
-                return _Site;
-            }
-            set
-            {
-                OnSiteChanging(value);
-                ReportPropertyChanging("Site");
-                _Site = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Site");
-                OnSiteChanged();
-            }
-        }
-        private global::System.String _Site;
-        partial void OnSiteChanging(global::System.String value);
-        partial void OnSiteChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.String ConnectionString
         {
             get
@@ -228,6 +206,54 @@ namespace Connection
         private global::System.String _ConnectionString;
         partial void OnConnectionStringChanging(global::System.String value);
         partial void OnConnectionStringChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Domain
+        {
+            get
+            {
+                return _Domain;
+            }
+            set
+            {
+                OnDomainChanging(value);
+                ReportPropertyChanging("Domain");
+                _Domain = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Domain");
+                OnDomainChanged();
+            }
+        }
+        private global::System.String _Domain;
+        partial void OnDomainChanging(global::System.String value);
+        partial void OnDomainChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DomainGipo
+        {
+            get
+            {
+                return _DomainGipo;
+            }
+            set
+            {
+                OnDomainGipoChanging(value);
+                ReportPropertyChanging("DomainGipo");
+                _DomainGipo = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DomainGipo");
+                OnDomainGipoChanged();
+            }
+        }
+        private global::System.String _DomainGipo;
+        partial void OnDomainGipoChanging(global::System.String value);
+        partial void OnDomainGipoChanged();
 
         #endregion
     

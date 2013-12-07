@@ -6,14 +6,14 @@
     <edmx:StorageModels>
       <Schema Namespace="ArchiveModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ArchiveModelStoreContainer">
-          <EntitySet Name="tb_arc_Archive" EntityType="ArchiveModel.Store.tb_arc_Archive" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb_arc_ArchiveType" EntityType="ArchiveModel.Store.tb_arc_ArchiveType" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_tb_arc_Archive_IdArchiveType" Association="ArchiveModel.Store.FK_tb_arc_Archive_IdArchiveType">
-            <End Role="tb_arc_ArchiveType" EntitySet="tb_arc_ArchiveType" />
-            <End Role="tb_arc_Archive" EntitySet="tb_arc_Archive" />
+          <EntitySet Name="arcArchive" EntityType="ArchiveModel.Store.arcArchive" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="arcArchiveType" EntityType="ArchiveModel.Store.arcArchiveType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_arcArchive_IdArchiveType" Association="ArchiveModel.Store.FK_arcArchive_IdArchiveType">
+            <End Role="arcArchiveType" EntitySet="arcArchiveType" />
+            <End Role="arcArchive" EntitySet="arcArchive" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="tb_arc_Archive">
+        <EntityType Name="arcArchive">
           <Key>
             <PropertyRef Name="IdArchive" />
           </Key>
@@ -22,23 +22,23 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
           <Property Name="Path" Type="varchar" Nullable="false" MaxLength="128" />
         </EntityType>
-        <EntityType Name="tb_arc_ArchiveType">
+        <EntityType Name="arcArchiveType">
           <Key>
             <PropertyRef Name="IdArchiveType" />
           </Key>
-          <Property Name="IdArchiveType" Type="int" Nullable="false" />
+          <Property Name="IdArchiveType" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
           <Property Name="Extension" Type="varchar" MaxLength="4" />
           <Property Name="MaxSize" Type="int" />
         </EntityType>
-        <Association Name="FK_tb_arc_Archive_IdArchiveType">
-          <End Role="tb_arc_ArchiveType" Type="ArchiveModel.Store.tb_arc_ArchiveType" Multiplicity="1" />
-          <End Role="tb_arc_Archive" Type="ArchiveModel.Store.tb_arc_Archive" Multiplicity="*" />
+        <Association Name="FK_arcArchive_IdArchiveType">
+          <End Role="arcArchiveType" Type="ArchiveModel.Store.arcArchiveType" Multiplicity="1" />
+          <End Role="arcArchive" Type="ArchiveModel.Store.arcArchive" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tb_arc_ArchiveType">
+            <Principal Role="arcArchiveType">
               <PropertyRef Name="IdArchiveType" />
             </Principal>
-            <Dependent Role="tb_arc_Archive">
+            <Dependent Role="arcArchive">
               <PropertyRef Name="IdArchiveType" />
             </Dependent>
           </ReferentialConstraint>
@@ -48,15 +48,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ArchiveModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tb_arc_Archive" EntityType="ArchiveModel.tb_arc_Archive" />
-          <EntitySet Name="tb_arc_ArchiveType" EntityType="ArchiveModel.tb_arc_ArchiveType" />
-          <AssociationSet Name="FK_tb_arc_Archive_IdArchiveType" Association="ArchiveModel.FK_tb_arc_Archive_IdArchiveType">
-            <End Role="tb_arc_ArchiveType" EntitySet="tb_arc_ArchiveType" />
-            <End Role="tb_arc_Archive" EntitySet="tb_arc_Archive" />
+        <EntityContainer Name="ArchiveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="arcArchives" EntityType="ArchiveModel.arcArchive" />
+          <EntitySet Name="arcArchiveTypes" EntityType="ArchiveModel.arcArchiveType" />
+          <AssociationSet Name="FK_arcArchive_IdArchiveType" Association="ArchiveModel.FK_arcArchive_IdArchiveType">
+            <End Role="arcArchiveType" EntitySet="arcArchiveTypes" />
+            <End Role="arcArchive" EntitySet="arcArchives" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="tb_arc_Archive">
+        <EntityType Name="arcArchive">
           <Key>
             <PropertyRef Name="IdArchive" />
           </Key>
@@ -64,26 +64,26 @@
           <Property Name="IdArchiveType" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Name="Path" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="tb_arc_ArchiveType" Relationship="ArchiveModel.FK_tb_arc_Archive_IdArchiveType" FromRole="tb_arc_Archive" ToRole="tb_arc_ArchiveType" />
+          <NavigationProperty Name="arcArchiveType" Relationship="ArchiveModel.FK_arcArchive_IdArchiveType" FromRole="arcArchive" ToRole="arcArchiveType" />
         </EntityType>
-        <EntityType Name="tb_arc_ArchiveType">
+        <EntityType Name="arcArchiveType">
           <Key>
             <PropertyRef Name="IdArchiveType" />
           </Key>
-          <Property Name="IdArchiveType" Type="Int32" Nullable="false" />
+          <Property Name="IdArchiveType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Name="Extension" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
           <Property Name="MaxSize" Type="Int32" />
-          <NavigationProperty Name="tb_arc_Archive" Relationship="ArchiveModel.FK_tb_arc_Archive_IdArchiveType" FromRole="tb_arc_ArchiveType" ToRole="tb_arc_Archive" />
+          <NavigationProperty Name="arcArchives" Relationship="ArchiveModel.FK_arcArchive_IdArchiveType" FromRole="arcArchiveType" ToRole="arcArchive" />
         </EntityType>
-        <Association Name="FK_tb_arc_Archive_IdArchiveType">
-          <End Role="tb_arc_ArchiveType" Type="ArchiveModel.tb_arc_ArchiveType" Multiplicity="1" />
-          <End Role="tb_arc_Archive" Type="ArchiveModel.tb_arc_Archive" Multiplicity="*" />
+        <Association Name="FK_arcArchive_IdArchiveType">
+          <End Role="arcArchiveType" Type="ArchiveModel.arcArchiveType" Multiplicity="1" />
+          <End Role="arcArchive" Type="ArchiveModel.arcArchive" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tb_arc_ArchiveType">
+            <Principal Role="arcArchiveType">
               <PropertyRef Name="IdArchiveType" />
             </Principal>
-            <Dependent Role="tb_arc_Archive">
+            <Dependent Role="arcArchive">
               <PropertyRef Name="IdArchiveType" />
             </Dependent>
           </ReferentialConstraint>
@@ -93,14 +93,14 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ArchiveModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="tb_arc_Archive"><EntityTypeMapping TypeName="ArchiveModel.tb_arc_Archive"><MappingFragment StoreEntitySet="tb_arc_Archive">
+        <EntityContainerMapping StorageEntityContainer="ArchiveModelStoreContainer" CdmEntityContainer="ArchiveEntities">
+          <EntitySetMapping Name="arcArchives"><EntityTypeMapping TypeName="ArchiveModel.arcArchive"><MappingFragment StoreEntitySet="arcArchive">
             <ScalarProperty Name="IdArchive" ColumnName="IdArchive" />
             <ScalarProperty Name="IdArchiveType" ColumnName="IdArchiveType" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Path" ColumnName="Path" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tb_arc_ArchiveType"><EntityTypeMapping TypeName="ArchiveModel.tb_arc_ArchiveType"><MappingFragment StoreEntitySet="tb_arc_ArchiveType">
+          <EntitySetMapping Name="arcArchiveTypes"><EntityTypeMapping TypeName="ArchiveModel.arcArchiveType"><MappingFragment StoreEntitySet="arcArchiveType">
             <ScalarProperty Name="IdArchiveType" ColumnName="IdArchiveType" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Extension" ColumnName="Extension" />
@@ -127,9 +127,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Archive">
-        <EntityTypeShape EntityType="ArchiveModel.tb_arc_Archive" Width="1.5" PointX="3" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArchiveModel.tb_arc_ArchiveType" Width="1.5" PointX="0.75" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
-        <AssociationConnector Association="ArchiveModel.FK_tb_arc_Archive_IdArchiveType" ManuallyRouted="false">
+        <EntityTypeShape EntityType="ArchiveModel.arcArchive" Width="1.5" PointX="3" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArchiveModel.arcArchiveType" Width="1.5" PointX="0.75" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
+        <AssociationConnector Association="ArchiveModel.FK_arcArchive_IdArchiveType" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.8651432291666668" />
           <ConnectorPoint PointX="3" PointY="1.8651432291666668" />
         </AssociationConnector>

@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Configuration;
+using Account;
+using Account.Services;
+
 
 namespace Cms
 {
     public static class Context
     {
-        private static int? _IdWebSite;
-        public static int? IdWebSite 
+        private static accWebSite _WebSite;
+        public static accWebSite WebSite 
         {
             get
             {
-                if (_IdWebSite == null)
+                if (_WebSite == null)
                 {
-                    _IdWebSite = 1;
+                    _WebSite = Account.Services.AccountService.GetWebSite(SubDomain, Cms.Context.GetConnectionStringEntity("AccountEntities"));
                 }
-                return _IdWebSite;
+                return _WebSite;
             }
-            set
-            {
-                _IdWebSite = value;
-            }
-        
         }
 
         public static string ConnectionString
@@ -54,6 +53,13 @@ namespace Cms
                 }
                 return "";
             }
+        }
+
+        public static string GetConnectionStringEntity(string Entity)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings[Entity].ConnectionString;
+            connectionString = connectionString.Replace("{VAR_CONNECTIONSTRING}", Context.ConnectionString);
+            return connectionString;
         }
     }
 }

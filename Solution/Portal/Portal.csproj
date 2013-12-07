@@ -54,6 +54,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\PagePartialControl.cs" />
     <Compile Include="Portal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,12 +70,22 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Control\" />
+    <Content Include="Web.Config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cms\Cms.csproj">
-      <Project>{56FC6732-FFCE-455B-BF77-AD3C23D57F87}</Project>
-      <Name>Cms</Name>
+    <Content Include="Web.Debug.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Account\Account.csproj">
+      <Project>{AC7E728F-7B32-4E7B-B0DE-9A0C3D619F6D}</Project>
+      <Name>Account</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

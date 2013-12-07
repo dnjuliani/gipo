@@ -20,17 +20,17 @@ namespace Gipo
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            
             routes.MapRoute(
-                "ViewPart",
-                "viewpart/{action}/{parameter}",
-                new { controller = "ViewPart", action = "Index", parameter = UrlParameter.Optional }
+                "ArchiveName",
+                "archive/name/{parameter}",
+                new { controller = "Archive", action = "ByName", parameter = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                "Archive",
-                "archive/{parameter}",
-                new { controller = "Archive", action = "Index", parameter = UrlParameter.Optional }
+                "ArchiveId",
+                "archive/id/{parameter}",
+                new { controller = "Archive", action = "ById", parameter = UrlParameter.Optional }
             );
 
             routes.MapRoute(

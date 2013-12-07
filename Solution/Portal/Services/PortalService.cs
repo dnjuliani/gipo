@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
-using System.Configuration;
+using System.Xml;
+using System.Web.UI.HtmlControls;
 
 namespace Portal.Services
 {
     public class PortalService
     {
         /// <summary>
-        /// GIPO: Retorna objeto tb_prt_Page de um WebSite a partir de uma URL
+        /// GIPO: Retorna objeto porPage de um WebSite a partir de uma URL
         /// </summary>
-        public static Portal.tb_prt_Page GetByUrl(int idWebSite, string path)
+        public static Portal.porPage GetByUrl(int? idWebSite, string path)
         {
             List<string> folders = new List<string>();
             int? idPageFolderParent = null;
 
-            PortalEntities portal = new PortalEntities(GetConnectionString());
-            IEnumerable<Portal.tb_prt_Folder> queryFolder;
-            IEnumerable<Portal.tb_prt_Page> queryPage;
-            Portal.tb_prt_Folder objFolder = new Portal.tb_prt_Folder();
+            PortalEntities portal = new PortalEntities(Account.Context.GetConnectionStringEntity("Portal"));
+            IEnumerable<Portal.porFolder> queryFolder;
+            IEnumerable<Portal.porPage> queryPage;
+            Portal.porFolder objFolder = new Portal.porFolder();
 
             string pathFolders = "/";
             string pathPage = path;
@@ -41,8 +42,8 @@ namespace Portal.Services
 
                 foreach (string folder in folders)
                 {
-                    queryFolder = from f in portal.tb_prt_Folder
-                                  where f.Name.Equals(folder) && ((idPageFolderParent == null) ? f.IdFolderParent == null : f.IdFolderParent == idPageFolderParent)
+                    queryFolder = from f in portal.porFolders
+                                  where f.IdWebSite == idWebSite && f.Name.Equals(folder) && ((idPageFolderParent == null) ? f.IdFolderParent == null : f.IdFolderParent == idPageFolderParent)
                                   select f;
 
                     objFolder = queryFolder.FirstOrDefault();
@@ -55,21 +56,11 @@ namespace Portal.Services
                 }
             }
 
-            queryPage = from p in portal.tb_prt_Page
-                        where p.Url.Equals(pathPage) && p.IdFolder == idPageFolderParent
+            queryPage = from p in portal.porPages
+                        where p.IdWebSite == idWebSite && p.Url.Equals(pathPage) && p.IdFolder == idPageFolderParent
                         select p;
 
             return queryPage.FirstOrDefault();
-        }
-
-        /// <summary>
-        /// GIPO: Obtem connectionString para acesso ao PortalEntities
-        /// </summary>
-        private static string GetConnectionString()
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["PortalEntities"].ConnectionString;
-            connectionString = connectionString.Replace("{VAR_CONNECTIONSTRING}", Cms.Context.ConnectionString);
-            return connectionString;
         }
 
         /// <summary>
@@ -101,6 +92,27 @@ namespace Portal.Services
                 pathFolders = "/";
                 pathPage = path;
             }
+
+            if (string.IsNullOrWhiteSpace(pathPage))
+            {
+                pathPage = "/";
+            }
+        }
+
+        public static string RenderControls(string contentHtml)
+        {
+            //TODO: GUSTAVO VEIGA ENVIARÁ O CÓDIGO POR E-MAIL
+            
+            PortalEntities portal = new PortalEntities(Account.Context.GetConnectionStringEntity("Portal"));
+            IEnumerable<Portal.porPagePartial> queryPagePartial;
+
+            queryPagePartial =  from pp in portal.porPagePartials
+                                where pp.Name.Equals("header")
+                                select pp;
+
+            contentHtml = contentHtml.Replace("<cc:pagePartial name=\"header\" />", queryPagePartial.FirstOrDefault().Html);
+
+            return contentHtml;
         }
     }
 }

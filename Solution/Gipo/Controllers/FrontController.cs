@@ -14,8 +14,9 @@ namespace Gipo.Controllers
         {
             if (this.HttpContext != null)
             {
-                Portal.tb_prt_Page page = Portal.Services.PortalService.GetByUrl(1, path);
-                ViewData["Html"] = page.Html;
+                Portal.porPage page = Portal.Services.PortalService.GetByUrl(Account.Context.WebSite.IdWebSite, path);
+                string html = Portal.Services.PortalService.RenderControls(page.Html);
+                ViewData["Html"] = html;
             }
             return View();
         }

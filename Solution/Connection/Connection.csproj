@@ -68,6 +68,19 @@
       <LastGenOutput>Connection.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Debug.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

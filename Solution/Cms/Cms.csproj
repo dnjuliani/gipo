@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Account\Account.csproj">
+      <Project>{AC7E728F-7B32-4E7B-B0DE-9A0C3D619F6D}</Project>
+      <Name>Account</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Connection\Connection.csproj">
       <Project>{8A29D0FA-0218-4B3D-A047-D10AED3EB814}</Project>
       <Name>Connection</Name>

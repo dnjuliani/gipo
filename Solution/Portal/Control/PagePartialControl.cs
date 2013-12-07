@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Account.Services
+namespace Portal.Control
 {
-    public static class ConnectionService
+    public class PagePartialControl
     {
-        
     }
 }

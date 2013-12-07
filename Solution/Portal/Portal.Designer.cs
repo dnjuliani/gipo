@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.tb_prt_Folder), "tb_prt_Folder1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.tb_prt_Folder), true)]
-[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_tb_prt_Page_IdFolder", "tb_prt_Folder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Portal.tb_prt_Folder), "tb_prt_Page", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.tb_prt_Page), true)]
-[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_tb_prt_Page_IdTemplate", "tb_prt_Template", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.tb_prt_Template), "tb_prt_Page", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.tb_prt_Page), true)]
+[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_porFolder_IdFolderParent", "porFolder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.porFolder), "porFolder1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porFolder), true)]
+[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_porPage_IdFolder", "porFolder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Portal.porFolder), "porPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porPage), true)]
+[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_porPage_IdTemplate", "porTemplate", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.porTemplate), "porPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porPage), true)]
 
 #endregion
 
@@ -75,124 +75,148 @@ namespace Portal
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_prt_Control> tb_prt_Control
+        public ObjectSet<porControl> porControls
         {
             get
             {
-                if ((_tb_prt_Control == null))
+                if ((_porControls == null))
                 {
-                    _tb_prt_Control = base.CreateObjectSet<tb_prt_Control>("tb_prt_Control");
+                    _porControls = base.CreateObjectSet<porControl>("porControls");
                 }
-                return _tb_prt_Control;
+                return _porControls;
             }
         }
-        private ObjectSet<tb_prt_Control> _tb_prt_Control;
+        private ObjectSet<porControl> _porControls;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_prt_Folder> tb_prt_Folder
+        public ObjectSet<porFolder> porFolders
         {
             get
             {
-                if ((_tb_prt_Folder == null))
+                if ((_porFolders == null))
                 {
-                    _tb_prt_Folder = base.CreateObjectSet<tb_prt_Folder>("tb_prt_Folder");
+                    _porFolders = base.CreateObjectSet<porFolder>("porFolders");
                 }
-                return _tb_prt_Folder;
+                return _porFolders;
             }
         }
-        private ObjectSet<tb_prt_Folder> _tb_prt_Folder;
+        private ObjectSet<porFolder> _porFolders;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_prt_Page> tb_prt_Page
+        public ObjectSet<porPage> porPages
         {
             get
             {
-                if ((_tb_prt_Page == null))
+                if ((_porPages == null))
                 {
-                    _tb_prt_Page = base.CreateObjectSet<tb_prt_Page>("tb_prt_Page");
+                    _porPages = base.CreateObjectSet<porPage>("porPages");
                 }
-                return _tb_prt_Page;
+                return _porPages;
             }
         }
-        private ObjectSet<tb_prt_Page> _tb_prt_Page;
+        private ObjectSet<porPage> _porPages;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_prt_Template> tb_prt_Template
+        public ObjectSet<porTemplate> porTemplates
         {
             get
             {
-                if ((_tb_prt_Template == null))
+                if ((_porTemplates == null))
                 {
-                    _tb_prt_Template = base.CreateObjectSet<tb_prt_Template>("tb_prt_Template");
+                    _porTemplates = base.CreateObjectSet<porTemplate>("porTemplates");
                 }
-                return _tb_prt_Template;
+                return _porTemplates;
             }
         }
-        private ObjectSet<tb_prt_Template> _tb_prt_Template;
+        private ObjectSet<porTemplate> _porTemplates;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tb_prt_UrlMapping> tb_prt_UrlMapping
+        public ObjectSet<porUrlMapping> porUrlMappings
         {
             get
             {
-                if ((_tb_prt_UrlMapping == null))
+                if ((_porUrlMappings == null))
                 {
-                    _tb_prt_UrlMapping = base.CreateObjectSet<tb_prt_UrlMapping>("tb_prt_UrlMapping");
+                    _porUrlMappings = base.CreateObjectSet<porUrlMapping>("porUrlMappings");
                 }
-                return _tb_prt_UrlMapping;
+                return _porUrlMappings;
             }
         }
-        private ObjectSet<tb_prt_UrlMapping> _tb_prt_UrlMapping;
+        private ObjectSet<porUrlMapping> _porUrlMappings;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<porPagePartial> porPagePartials
+        {
+            get
+            {
+                if ((_porPagePartials == null))
+                {
+                    _porPagePartials = base.CreateObjectSet<porPagePartial>("porPagePartials");
+                }
+                return _porPagePartials;
+            }
+        }
+        private ObjectSet<porPagePartial> _porPagePartials;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_prt_Control EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the porControls EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_prt_Control(tb_prt_Control tb_prt_Control)
+        public void AddToporControls(porControl porControl)
         {
-            base.AddObject("tb_prt_Control", tb_prt_Control);
+            base.AddObject("porControls", porControl);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_prt_Folder EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the porFolders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_prt_Folder(tb_prt_Folder tb_prt_Folder)
+        public void AddToporFolders(porFolder porFolder)
         {
-            base.AddObject("tb_prt_Folder", tb_prt_Folder);
+            base.AddObject("porFolders", porFolder);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_prt_Page EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the porPages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_prt_Page(tb_prt_Page tb_prt_Page)
+        public void AddToporPages(porPage porPage)
         {
-            base.AddObject("tb_prt_Page", tb_prt_Page);
+            base.AddObject("porPages", porPage);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_prt_Template EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the porTemplates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_prt_Template(tb_prt_Template tb_prt_Template)
+        public void AddToporTemplates(porTemplate porTemplate)
         {
-            base.AddObject("tb_prt_Template", tb_prt_Template);
+            base.AddObject("porTemplates", porTemplate);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tb_prt_UrlMapping EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the porUrlMappings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotb_prt_UrlMapping(tb_prt_UrlMapping tb_prt_UrlMapping)
+        public void AddToporUrlMappings(porUrlMapping porUrlMapping)
         {
-            base.AddObject("tb_prt_UrlMapping", tb_prt_UrlMapping);
+            base.AddObject("porUrlMappings", porUrlMapping);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the porPagePartials EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToporPagePartials(porPagePartial porPagePartial)
+        {
+            base.AddObject("porPagePartials", porPagePartial);
         }
 
         #endregion
@@ -206,28 +230,28 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="tb_prt_Control")]
+    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porControl")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_prt_Control : EntityObject
+    public partial class porControl : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_prt_Control object.
+        /// Create a new porControl object.
         /// </summary>
         /// <param name="idControl">Initial value of the IdControl property.</param>
         /// <param name="idModule">Initial value of the IdModule property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="class">Initial value of the Class property.</param>
-        public static tb_prt_Control Createtb_prt_Control(global::System.Int32 idControl, global::System.Int32 idModule, global::System.String name, global::System.String @class)
+        /// <param name="route">Initial value of the Route property.</param>
+        public static porControl CreateporControl(global::System.Int32 idControl, global::System.Int32 idModule, global::System.String name, global::System.String route)
         {
-            tb_prt_Control tb_prt_Control = new tb_prt_Control();
-            tb_prt_Control.IdControl = idControl;
-            tb_prt_Control.IdModule = idModule;
-            tb_prt_Control.Name = name;
-            tb_prt_Control.Class = @class;
-            return tb_prt_Control;
+            porControl porControl = new porControl();
+            porControl.IdControl = idControl;
+            porControl.IdModule = idModule;
+            porControl.Name = name;
+            porControl.Route = route;
+            return porControl;
         }
 
         #endregion
@@ -313,24 +337,24 @@ namespace Portal
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Class
+        public global::System.String Route
         {
             get
             {
-                return _Class;
+                return _Route;
             }
             set
             {
-                OnClassChanging(value);
-                ReportPropertyChanging("Class");
-                _Class = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Class");
-                OnClassChanged();
+                OnRouteChanging(value);
+                ReportPropertyChanging("Route");
+                _Route = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Route");
+                OnRouteChanged();
             }
         }
-        private global::System.String _Class;
-        partial void OnClassChanging(global::System.String value);
-        partial void OnClassChanged();
+        private global::System.String _Route;
+        partial void OnRouteChanging(global::System.String value);
+        partial void OnRouteChanged();
 
         #endregion
     
@@ -339,26 +363,26 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="tb_prt_Folder")]
+    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porFolder")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_prt_Folder : EntityObject
+    public partial class porFolder : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_prt_Folder object.
+        /// Create a new porFolder object.
         /// </summary>
         /// <param name="idFolder">Initial value of the IdFolder property.</param>
         /// <param name="idWebSite">Initial value of the IdWebSite property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static tb_prt_Folder Createtb_prt_Folder(global::System.Int32 idFolder, global::System.Int32 idWebSite, global::System.String name)
+        public static porFolder CreateporFolder(global::System.Int32 idFolder, global::System.Int32 idWebSite, global::System.String name)
         {
-            tb_prt_Folder tb_prt_Folder = new tb_prt_Folder();
-            tb_prt_Folder.IdFolder = idFolder;
-            tb_prt_Folder.IdWebSite = idWebSite;
-            tb_prt_Folder.Name = name;
-            return tb_prt_Folder;
+            porFolder porFolder = new porFolder();
+            porFolder.IdFolder = idFolder;
+            porFolder.IdWebSite = idWebSite;
+            porFolder.Name = name;
+            return porFolder;
         }
 
         #endregion
@@ -473,18 +497,18 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder1")]
-        public EntityCollection<tb_prt_Folder> tb_prt_Folder1
+        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porFolder_IdFolderParent", "porFolder1")]
+        public EntityCollection<porFolder> porFolder1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder1", value);
                 }
             }
         }
@@ -495,16 +519,16 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder")]
-        public tb_prt_Folder tb_prt_Folder2
+        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porFolder_IdFolderParent", "porFolder")]
+        public porFolder porFolder2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder").Value = value;
             }
         }
         /// <summary>
@@ -512,17 +536,17 @@ namespace Portal
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<tb_prt_Folder> tb_prt_Folder2Reference
+        public EntityReference<porFolder> porFolder2Reference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Folder_IdFolderParent", "tb_prt_Folder", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder", value);
                 }
             }
         }
@@ -533,18 +557,18 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_tb_prt_Page_IdFolder", "tb_prt_Page")]
-        public EntityCollection<tb_prt_Page> tb_prt_Page
+        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdFolder", "porPage")]
+        public EntityCollection<porPage> porPages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tb_prt_Page>("tela_p3Model.FK_tb_prt_Page_IdFolder", "tb_prt_Page");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdFolder", "porPage");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_prt_Page>("tela_p3Model.FK_tb_prt_Page_IdFolder", "tb_prt_Page", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdFolder", "porPage", value);
                 }
             }
         }
@@ -555,15 +579,15 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="tb_prt_Page")]
+    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porPage")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_prt_Page : EntityObject
+    public partial class porPage : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_prt_Page object.
+        /// Create a new porPage object.
         /// </summary>
         /// <param name="idPage">Initial value of the IdPage property.</param>
         /// <param name="idFolder">Initial value of the IdFolder property.</param>
@@ -571,16 +595,16 @@ namespace Portal
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="url">Initial value of the Url property.</param>
         /// <param name="html">Initial value of the Html property.</param>
-        public static tb_prt_Page Createtb_prt_Page(global::System.Int32 idPage, global::System.Int32 idFolder, global::System.Int32 idWebSite, global::System.String name, global::System.String url, global::System.String html)
+        public static porPage CreateporPage(global::System.Int32 idPage, global::System.Int32 idFolder, global::System.Int32 idWebSite, global::System.String name, global::System.String url, global::System.String html)
         {
-            tb_prt_Page tb_prt_Page = new tb_prt_Page();
-            tb_prt_Page.IdPage = idPage;
-            tb_prt_Page.IdFolder = idFolder;
-            tb_prt_Page.IdWebSite = idWebSite;
-            tb_prt_Page.Name = name;
-            tb_prt_Page.Url = url;
-            tb_prt_Page.Html = html;
-            return tb_prt_Page;
+            porPage porPage = new porPage();
+            porPage.IdPage = idPage;
+            porPage.IdFolder = idFolder;
+            porPage.IdWebSite = idWebSite;
+            porPage.Name = name;
+            porPage.Url = url;
+            porPage.Html = html;
+            return porPage;
         }
 
         #endregion
@@ -767,16 +791,16 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_tb_prt_Page_IdFolder", "tb_prt_Folder")]
-        public tb_prt_Folder tb_prt_Folder
+        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdFolder", "porFolder")]
+        public porFolder porFolder
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Page_IdFolder", "tb_prt_Folder").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Page_IdFolder", "tb_prt_Folder").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder").Value = value;
             }
         }
         /// <summary>
@@ -784,17 +808,17 @@ namespace Portal
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<tb_prt_Folder> tb_prt_FolderReference
+        public EntityReference<porFolder> porFolderReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Page_IdFolder", "tb_prt_Folder");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tb_prt_Folder>("tela_p3Model.FK_tb_prt_Page_IdFolder", "tb_prt_Folder", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder", value);
                 }
             }
         }
@@ -805,16 +829,16 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_tb_prt_Page_IdTemplate", "tb_prt_Template")]
-        public tb_prt_Template tb_prt_Template
+        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdTemplate", "porTemplate")]
+        public porTemplate porTemplate
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Template>("tela_p3Model.FK_tb_prt_Page_IdTemplate", "tb_prt_Template").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Template>("tela_p3Model.FK_tb_prt_Page_IdTemplate", "tb_prt_Template").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate").Value = value;
             }
         }
         /// <summary>
@@ -822,17 +846,17 @@ namespace Portal
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<tb_prt_Template> tb_prt_TemplateReference
+        public EntityReference<porTemplate> porTemplateReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_prt_Template>("tela_p3Model.FK_tb_prt_Page_IdTemplate", "tb_prt_Template");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tb_prt_Template>("tela_p3Model.FK_tb_prt_Page_IdTemplate", "tb_prt_Template", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate", value);
                 }
             }
         }
@@ -843,26 +867,133 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="tb_prt_Template")]
+    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porPagePartial")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_prt_Template : EntityObject
+    public partial class porPagePartial : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_prt_Template object.
+        /// Create a new porPagePartial object.
+        /// </summary>
+        /// <param name="idPagePartial">Initial value of the IdPagePartial property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="html">Initial value of the Html property.</param>
+        public static porPagePartial CreateporPagePartial(global::System.Int32 idPagePartial, global::System.String name, global::System.String html)
+        {
+            porPagePartial porPagePartial = new porPagePartial();
+            porPagePartial.IdPagePartial = idPagePartial;
+            porPagePartial.Name = name;
+            porPagePartial.Html = html;
+            return porPagePartial;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdPagePartial
+        {
+            get
+            {
+                return _IdPagePartial;
+            }
+            set
+            {
+                if (_IdPagePartial != value)
+                {
+                    OnIdPagePartialChanging(value);
+                    ReportPropertyChanging("IdPagePartial");
+                    _IdPagePartial = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("IdPagePartial");
+                    OnIdPagePartialChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IdPagePartial;
+        partial void OnIdPagePartialChanging(global::System.Int32 value);
+        partial void OnIdPagePartialChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Html
+        {
+            get
+            {
+                return _Html;
+            }
+            set
+            {
+                OnHtmlChanging(value);
+                ReportPropertyChanging("Html");
+                _Html = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Html");
+                OnHtmlChanged();
+            }
+        }
+        private global::System.String _Html;
+        partial void OnHtmlChanging(global::System.String value);
+        partial void OnHtmlChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porTemplate")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class porTemplate : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new porTemplate object.
         /// </summary>
         /// <param name="idTemplate">Initial value of the IdTemplate property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="html">Initial value of the Html property.</param>
-        public static tb_prt_Template Createtb_prt_Template(global::System.Int32 idTemplate, global::System.String name, global::System.String html)
+        public static porTemplate CreateporTemplate(global::System.Int32 idTemplate, global::System.String name, global::System.String html)
         {
-            tb_prt_Template tb_prt_Template = new tb_prt_Template();
-            tb_prt_Template.IdTemplate = idTemplate;
-            tb_prt_Template.Name = name;
-            tb_prt_Template.Html = html;
-            return tb_prt_Template;
+            porTemplate porTemplate = new porTemplate();
+            porTemplate.IdTemplate = idTemplate;
+            porTemplate.Name = name;
+            porTemplate.Html = html;
+            return porTemplate;
         }
 
         #endregion
@@ -953,18 +1084,18 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_tb_prt_Page_IdTemplate", "tb_prt_Page")]
-        public EntityCollection<tb_prt_Page> tb_prt_Page
+        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdTemplate", "porPage")]
+        public EntityCollection<porPage> porPages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tb_prt_Page>("tela_p3Model.FK_tb_prt_Page_IdTemplate", "tb_prt_Page");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdTemplate", "porPage");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_prt_Page>("tela_p3Model.FK_tb_prt_Page_IdTemplate", "tb_prt_Page", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdTemplate", "porPage", value);
                 }
             }
         }
@@ -975,26 +1106,26 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="tb_prt_UrlMapping")]
+    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porUrlMapping")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tb_prt_UrlMapping : EntityObject
+    public partial class porUrlMapping : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tb_prt_UrlMapping object.
+        /// Create a new porUrlMapping object.
         /// </summary>
         /// <param name="idWebSite">Initial value of the IdWebSite property.</param>
         /// <param name="urlFrom">Initial value of the UrlFrom property.</param>
         /// <param name="urlTo">Initial value of the UrlTo property.</param>
-        public static tb_prt_UrlMapping Createtb_prt_UrlMapping(global::System.Int32 idWebSite, global::System.String urlFrom, global::System.String urlTo)
+        public static porUrlMapping CreateporUrlMapping(global::System.Int32 idWebSite, global::System.String urlFrom, global::System.String urlTo)
         {
-            tb_prt_UrlMapping tb_prt_UrlMapping = new tb_prt_UrlMapping();
-            tb_prt_UrlMapping.IdWebSite = idWebSite;
-            tb_prt_UrlMapping.UrlFrom = urlFrom;
-            tb_prt_UrlMapping.UrlTo = urlTo;
-            return tb_prt_UrlMapping;
+            porUrlMapping porUrlMapping = new porUrlMapping();
+            porUrlMapping.IdWebSite = idWebSite;
+            porUrlMapping.UrlFrom = urlFrom;
+            porUrlMapping.UrlTo = urlTo;
+            return porUrlMapping;
         }
 
         #endregion
