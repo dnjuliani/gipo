@@ -5,6 +5,8 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Xml;
 using System.Web.UI.HtmlControls;
+using System.Xml.Linq;
+using System.Net;
 
 namespace Portal.Services
 {
@@ -101,8 +103,43 @@ namespace Portal.Services
 
         public static string RenderControls(string contentHtml)
         {
-            //TODO: GUSTAVO VEIGA ENVIARÁ O CÓDIGO POR E-MAIL
-            
+            HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+
+            HtmlAgilityPack.HtmlNode headNode;
+            HtmlAgilityPack.HtmlNode bodyNode;
+
+            IEnumerable<HtmlAgilityPack.HtmlNode> headScripts;
+            IEnumerable<HtmlAgilityPack.HtmlNode> headControls;
+            IEnumerable<HtmlAgilityPack.HtmlNode> bodyScripts;
+            IEnumerable<HtmlAgilityPack.HtmlNode> bodyControls;
+
+            htmlDoc.LoadHtml(contentHtml);
+
+            if (htmlDoc.ParseErrors != null && htmlDoc.ParseErrors.Count() > 0)
+            {
+                //O QUE FAZER QUANDO O HTML ESTÁ COM ERRO?
+            }
+            else
+            {
+                if (htmlDoc.DocumentNode != null)
+                {
+                    headNode = htmlDoc.DocumentNode.SelectSingleNode("//head");
+                    bodyNode = htmlDoc.DocumentNode.SelectSingleNode("//body");
+
+                    if (headNode != null)
+                    {
+                        headScripts = headNode.ChildNodes.Where(cn => "script".Equals(cn.Name));
+                        headControls = headNode.ChildNodes.Where(cn => "cc".Equals(cn.Name));
+                    }
+                    
+                    if (bodyNode != null)
+                    {
+                        bodyScripts = bodyNode.ChildNodes.Where(cn => "script".Equals(cn.Name));
+                        bodyControls = bodyNode.ChildNodes.Where(cn => "cc".Equals(cn.Name));
+                    }
+                }
+            }
+
             PortalEntities portal = new PortalEntities(Account.Context.GetConnectionStringEntity("Portal"));
             IEnumerable<Portal.porPagePartial> queryPagePartial;
 
