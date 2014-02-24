@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ArchiveModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="ArchiveModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ArchiveModelStoreContainer">
-          <EntitySet Name="arcArchive" EntityType="ArchiveModel.Store.arcArchive" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="arcArchiveType" EntityType="ArchiveModel.Store.arcArchiveType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="arcArchive" EntityType="ArchiveModel.Store.arcArchive" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="arcArchiveType" EntityType="ArchiveModel.Store.arcArchiveType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <AssociationSet Name="FK_arcArchive_IdArchiveType" Association="ArchiveModel.Store.FK_arcArchive_IdArchiveType">
             <End Role="arcArchiveType" EntitySet="arcArchiveType" />
             <End Role="arcArchive" EntitySet="arcArchive" />
@@ -47,8 +47,8 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ArchiveModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="ArchiveEntities" annotation:LazyLoadingEnabled="true">
+      <Schema Namespace="ArchiveModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ArchiveEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="arcArchives" EntityType="ArchiveModel.arcArchive" />
           <EntitySet Name="arcArchiveTypes" EntityType="ArchiveModel.arcArchiveType" />
           <AssociationSet Name="FK_arcArchive_IdArchiveType" Association="ArchiveModel.FK_arcArchive_IdArchiveType">
@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="IdArchive" />
           </Key>
-          <Property Name="IdArchive" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdArchive" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="IdArchiveType" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Name="Path" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="IdArchiveType" />
           </Key>
-          <Property Name="IdArchiveType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdArchiveType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Name="Extension" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
           <Property Name="MaxSize" Type="Int32" />
@@ -92,7 +92,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ArchiveModelStoreContainer" CdmEntityContainer="ArchiveEntities">
           <EntitySetMapping Name="arcArchives"><EntityTypeMapping TypeName="ArchiveModel.arcArchive"><MappingFragment StoreEntitySet="arcArchive">
             <ScalarProperty Name="IdArchive" ColumnName="IdArchive" />
@@ -111,7 +111,7 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />

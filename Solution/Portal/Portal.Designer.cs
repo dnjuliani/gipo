@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -169,6 +170,7 @@ namespace Portal
         private ObjectSet<porPagePartial> _porPagePartials;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -220,11 +222,11 @@ namespace Portal
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -255,7 +257,8 @@ namespace Portal
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -274,7 +277,7 @@ namespace Portal
                 {
                     OnIdControlChanging(value);
                     ReportPropertyChanging("IdControl");
-                    _IdControl = StructuralObject.SetValidValue(value);
+                    _IdControl = StructuralObject.SetValidValue(value, "IdControl");
                     ReportPropertyChanged("IdControl");
                     OnIdControlChanged();
                 }
@@ -299,7 +302,7 @@ namespace Portal
             {
                 OnIdModuleChanging(value);
                 ReportPropertyChanging("IdModule");
-                _IdModule = StructuralObject.SetValidValue(value);
+                _IdModule = StructuralObject.SetValidValue(value, "IdModule");
                 ReportPropertyChanged("IdModule");
                 OnIdModuleChanged();
             }
@@ -323,7 +326,7 @@ namespace Portal
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -347,7 +350,7 @@ namespace Portal
             {
                 OnRouteChanging(value);
                 ReportPropertyChanging("Route");
-                _Route = StructuralObject.SetValidValue(value, false);
+                _Route = StructuralObject.SetValidValue(value, false, "Route");
                 ReportPropertyChanged("Route");
                 OnRouteChanged();
             }
@@ -357,7 +360,7 @@ namespace Portal
         partial void OnRouteChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -386,7 +389,8 @@ namespace Portal
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -405,7 +409,7 @@ namespace Portal
                 {
                     OnIdFolderChanging(value);
                     ReportPropertyChanging("IdFolder");
-                    _IdFolder = StructuralObject.SetValidValue(value);
+                    _IdFolder = StructuralObject.SetValidValue(value, "IdFolder");
                     ReportPropertyChanged("IdFolder");
                     OnIdFolderChanged();
                 }
@@ -430,7 +434,7 @@ namespace Portal
             {
                 OnIdWebSiteChanging(value);
                 ReportPropertyChanging("IdWebSite");
-                _IdWebSite = StructuralObject.SetValidValue(value);
+                _IdWebSite = StructuralObject.SetValidValue(value, "IdWebSite");
                 ReportPropertyChanged("IdWebSite");
                 OnIdWebSiteChanged();
             }
@@ -454,7 +458,7 @@ namespace Portal
             {
                 OnIdFolderParentChanging(value);
                 ReportPropertyChanging("IdFolderParent");
-                _IdFolderParent = StructuralObject.SetValidValue(value);
+                _IdFolderParent = StructuralObject.SetValidValue(value, "IdFolderParent");
                 ReportPropertyChanged("IdFolderParent");
                 OnIdFolderParentChanged();
             }
@@ -478,7 +482,7 @@ namespace Portal
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -488,7 +492,7 @@ namespace Portal
         partial void OnNameChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -574,6 +578,7 @@ namespace Portal
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -608,7 +613,8 @@ namespace Portal
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -627,7 +633,7 @@ namespace Portal
                 {
                     OnIdPageChanging(value);
                     ReportPropertyChanging("IdPage");
-                    _IdPage = StructuralObject.SetValidValue(value);
+                    _IdPage = StructuralObject.SetValidValue(value, "IdPage");
                     ReportPropertyChanged("IdPage");
                     OnIdPageChanged();
                 }
@@ -652,7 +658,7 @@ namespace Portal
             {
                 OnIdTemplateChanging(value);
                 ReportPropertyChanging("IdTemplate");
-                _IdTemplate = StructuralObject.SetValidValue(value);
+                _IdTemplate = StructuralObject.SetValidValue(value, "IdTemplate");
                 ReportPropertyChanged("IdTemplate");
                 OnIdTemplateChanged();
             }
@@ -676,7 +682,7 @@ namespace Portal
             {
                 OnIdFolderChanging(value);
                 ReportPropertyChanging("IdFolder");
-                _IdFolder = StructuralObject.SetValidValue(value);
+                _IdFolder = StructuralObject.SetValidValue(value, "IdFolder");
                 ReportPropertyChanged("IdFolder");
                 OnIdFolderChanged();
             }
@@ -700,7 +706,7 @@ namespace Portal
             {
                 OnIdWebSiteChanging(value);
                 ReportPropertyChanging("IdWebSite");
-                _IdWebSite = StructuralObject.SetValidValue(value);
+                _IdWebSite = StructuralObject.SetValidValue(value, "IdWebSite");
                 ReportPropertyChanged("IdWebSite");
                 OnIdWebSiteChanged();
             }
@@ -724,7 +730,7 @@ namespace Portal
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -748,7 +754,7 @@ namespace Portal
             {
                 OnUrlChanging(value);
                 ReportPropertyChanging("Url");
-                _Url = StructuralObject.SetValidValue(value, false);
+                _Url = StructuralObject.SetValidValue(value, false, "Url");
                 ReportPropertyChanged("Url");
                 OnUrlChanged();
             }
@@ -772,7 +778,7 @@ namespace Portal
             {
                 OnHtmlChanging(value);
                 ReportPropertyChanging("Html");
-                _Html = StructuralObject.SetValidValue(value, false);
+                _Html = StructuralObject.SetValidValue(value, false, "Html");
                 ReportPropertyChanged("Html");
                 OnHtmlChanged();
             }
@@ -782,7 +788,7 @@ namespace Portal
         partial void OnHtmlChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -862,6 +868,7 @@ namespace Portal
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -890,7 +897,8 @@ namespace Portal
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -909,7 +917,7 @@ namespace Portal
                 {
                     OnIdPagePartialChanging(value);
                     ReportPropertyChanging("IdPagePartial");
-                    _IdPagePartial = StructuralObject.SetValidValue(value);
+                    _IdPagePartial = StructuralObject.SetValidValue(value, "IdPagePartial");
                     ReportPropertyChanged("IdPagePartial");
                     OnIdPagePartialChanged();
                 }
@@ -934,7 +942,7 @@ namespace Portal
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -958,7 +966,7 @@ namespace Portal
             {
                 OnHtmlChanging(value);
                 ReportPropertyChanging("Html");
-                _Html = StructuralObject.SetValidValue(value, false);
+                _Html = StructuralObject.SetValidValue(value, false, "Html");
                 ReportPropertyChanged("Html");
                 OnHtmlChanged();
             }
@@ -968,7 +976,7 @@ namespace Portal
         partial void OnHtmlChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -997,7 +1005,8 @@ namespace Portal
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1016,7 +1025,7 @@ namespace Portal
                 {
                     OnIdTemplateChanging(value);
                     ReportPropertyChanging("IdTemplate");
-                    _IdTemplate = StructuralObject.SetValidValue(value);
+                    _IdTemplate = StructuralObject.SetValidValue(value, "IdTemplate");
                     ReportPropertyChanged("IdTemplate");
                     OnIdTemplateChanged();
                 }
@@ -1041,7 +1050,7 @@ namespace Portal
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -1065,7 +1074,7 @@ namespace Portal
             {
                 OnHtmlChanging(value);
                 ReportPropertyChanging("Html");
-                _Html = StructuralObject.SetValidValue(value, false);
+                _Html = StructuralObject.SetValidValue(value, false, "Html");
                 ReportPropertyChanged("Html");
                 OnHtmlChanged();
             }
@@ -1075,7 +1084,7 @@ namespace Portal
         partial void OnHtmlChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -1101,6 +1110,7 @@ namespace Portal
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1129,7 +1139,8 @@ namespace Portal
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1148,7 +1159,7 @@ namespace Portal
                 {
                     OnIdWebSiteChanging(value);
                     ReportPropertyChanging("IdWebSite");
-                    _IdWebSite = StructuralObject.SetValidValue(value);
+                    _IdWebSite = StructuralObject.SetValidValue(value, "IdWebSite");
                     ReportPropertyChanged("IdWebSite");
                     OnIdWebSiteChanged();
                 }
@@ -1175,7 +1186,7 @@ namespace Portal
                 {
                     OnUrlFromChanging(value);
                     ReportPropertyChanging("UrlFrom");
-                    _UrlFrom = StructuralObject.SetValidValue(value, false);
+                    _UrlFrom = StructuralObject.SetValidValue(value, false, "UrlFrom");
                     ReportPropertyChanged("UrlFrom");
                     OnUrlFromChanged();
                 }
@@ -1200,7 +1211,7 @@ namespace Portal
             {
                 OnUrlToChanging(value);
                 ReportPropertyChanging("UrlTo");
-                _UrlTo = StructuralObject.SetValidValue(value, false);
+                _UrlTo = StructuralObject.SetValidValue(value, false, "UrlTo");
                 ReportPropertyChanged("UrlTo");
                 OnUrlToChanged();
             }
@@ -1224,7 +1235,7 @@ namespace Portal
             {
                 OnDtFromChanging(value);
                 ReportPropertyChanging("DtFrom");
-                _DtFrom = StructuralObject.SetValidValue(value);
+                _DtFrom = StructuralObject.SetValidValue(value, "DtFrom");
                 ReportPropertyChanged("DtFrom");
                 OnDtFromChanged();
             }
@@ -1248,7 +1259,7 @@ namespace Portal
             {
                 OnDtToChanging(value);
                 ReportPropertyChanging("DtTo");
-                _DtTo = StructuralObject.SetValidValue(value);
+                _DtTo = StructuralObject.SetValidValue(value, "DtTo");
                 ReportPropertyChanged("DtTo");
                 OnDtToChanged();
             }
@@ -1258,9 +1269,9 @@ namespace Portal
         partial void OnDtToChanged();
 
         #endregion
-    
+
     }
 
     #endregion
-    
+
 }

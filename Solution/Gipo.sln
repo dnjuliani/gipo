@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gipo", "Gipo\Gipo.csproj", "{FFC8F43E-6454-4421-86DB-CF4CC9081CC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gipo.Tests", "Gipo.Tests\Gipo.Tests.csproj", "{063BC471-1D0A-4758-B073-B83DF7DE2EE4}"

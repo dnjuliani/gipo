@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -103,6 +104,7 @@ namespace Archive
         private ObjectSet<arcArchiveType> _arcArchiveTypes;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -122,11 +124,11 @@ namespace Archive
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -157,7 +159,8 @@ namespace Archive
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -176,7 +179,7 @@ namespace Archive
                 {
                     OnIdArchiveChanging(value);
                     ReportPropertyChanging("IdArchive");
-                    _IdArchive = StructuralObject.SetValidValue(value);
+                    _IdArchive = StructuralObject.SetValidValue(value, "IdArchive");
                     ReportPropertyChanged("IdArchive");
                     OnIdArchiveChanged();
                 }
@@ -201,7 +204,7 @@ namespace Archive
             {
                 OnIdArchiveTypeChanging(value);
                 ReportPropertyChanging("IdArchiveType");
-                _IdArchiveType = StructuralObject.SetValidValue(value);
+                _IdArchiveType = StructuralObject.SetValidValue(value, "IdArchiveType");
                 ReportPropertyChanged("IdArchiveType");
                 OnIdArchiveTypeChanged();
             }
@@ -225,7 +228,7 @@ namespace Archive
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -249,7 +252,7 @@ namespace Archive
             {
                 OnPathChanging(value);
                 ReportPropertyChanging("Path");
-                _Path = StructuralObject.SetValidValue(value, false);
+                _Path = StructuralObject.SetValidValue(value, false, "Path");
                 ReportPropertyChanged("Path");
                 OnPathChanged();
             }
@@ -259,7 +262,7 @@ namespace Archive
         partial void OnPathChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -301,6 +304,7 @@ namespace Archive
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -327,7 +331,8 @@ namespace Archive
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -346,7 +351,7 @@ namespace Archive
                 {
                     OnIdArchiveTypeChanging(value);
                     ReportPropertyChanging("IdArchiveType");
-                    _IdArchiveType = StructuralObject.SetValidValue(value);
+                    _IdArchiveType = StructuralObject.SetValidValue(value, "IdArchiveType");
                     ReportPropertyChanged("IdArchiveType");
                     OnIdArchiveTypeChanged();
                 }
@@ -371,7 +376,7 @@ namespace Archive
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -395,7 +400,7 @@ namespace Archive
             {
                 OnExtensionChanging(value);
                 ReportPropertyChanging("Extension");
-                _Extension = StructuralObject.SetValidValue(value, true);
+                _Extension = StructuralObject.SetValidValue(value, true, "Extension");
                 ReportPropertyChanged("Extension");
                 OnExtensionChanged();
             }
@@ -419,7 +424,7 @@ namespace Archive
             {
                 OnMaxSizeChanging(value);
                 ReportPropertyChanging("MaxSize");
-                _MaxSize = StructuralObject.SetValidValue(value);
+                _MaxSize = StructuralObject.SetValidValue(value, "MaxSize");
                 ReportPropertyChanged("MaxSize");
                 OnMaxSizeChanged();
             }
@@ -429,7 +434,7 @@ namespace Archive
         partial void OnMaxSizeChanged();
 
         #endregion
-    
+
         #region Navigation Properties
     
         /// <summary>
@@ -455,8 +460,9 @@ namespace Archive
         }
 
         #endregion
+
     }
 
     #endregion
-    
+
 }

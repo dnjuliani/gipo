@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace Connection
 {
     #region Contexts
@@ -82,6 +82,7 @@ namespace Connection
         private ObjectSet<conConnection> _conConnections;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -93,11 +94,11 @@ namespace Connection
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -130,7 +131,8 @@ namespace Connection
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -149,7 +151,7 @@ namespace Connection
                 {
                     OnIdConnectionChanging(value);
                     ReportPropertyChanging("IdConnection");
-                    _IdConnection = StructuralObject.SetValidValue(value);
+                    _IdConnection = StructuralObject.SetValidValue(value, "IdConnection");
                     ReportPropertyChanged("IdConnection");
                     OnIdConnectionChanged();
                 }
@@ -174,7 +176,7 @@ namespace Connection
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -198,7 +200,7 @@ namespace Connection
             {
                 OnConnectionStringChanging(value);
                 ReportPropertyChanging("ConnectionString");
-                _ConnectionString = StructuralObject.SetValidValue(value, false);
+                _ConnectionString = StructuralObject.SetValidValue(value, false, "ConnectionString");
                 ReportPropertyChanged("ConnectionString");
                 OnConnectionStringChanged();
             }
@@ -222,7 +224,7 @@ namespace Connection
             {
                 OnDomainChanging(value);
                 ReportPropertyChanging("Domain");
-                _Domain = StructuralObject.SetValidValue(value, false);
+                _Domain = StructuralObject.SetValidValue(value, false, "Domain");
                 ReportPropertyChanged("Domain");
                 OnDomainChanged();
             }
@@ -246,7 +248,7 @@ namespace Connection
             {
                 OnDomainGipoChanging(value);
                 ReportPropertyChanging("DomainGipo");
-                _DomainGipo = StructuralObject.SetValidValue(value, false);
+                _DomainGipo = StructuralObject.SetValidValue(value, false, "DomainGipo");
                 ReportPropertyChanged("DomainGipo");
                 OnDomainGipoChanged();
             }
@@ -256,9 +258,9 @@ namespace Connection
         partial void OnDomainGipoChanged();
 
         #endregion
-    
+
     }
 
     #endregion
-    
+
 }

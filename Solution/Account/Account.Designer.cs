@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace Account
 {
     #region Contexts
@@ -194,6 +194,7 @@ namespace Account
         private ObjectSet<accWebSite> _accWebSites;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -261,11 +262,11 @@ namespace Account
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -300,7 +301,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -319,7 +321,7 @@ namespace Account
                 {
                     OnIdPersonChanging(value);
                     ReportPropertyChanging("IdPerson");
-                    _IdPerson = StructuralObject.SetValidValue(value);
+                    _IdPerson = StructuralObject.SetValidValue(value, "IdPerson");
                     ReportPropertyChanged("IdPerson");
                     OnIdPersonChanged();
                 }
@@ -344,7 +346,7 @@ namespace Account
             {
                 OnIdProfileChanging(value);
                 ReportPropertyChanging("IdProfile");
-                _IdProfile = StructuralObject.SetValidValue(value);
+                _IdProfile = StructuralObject.SetValidValue(value, "IdProfile");
                 ReportPropertyChanged("IdProfile");
                 OnIdProfileChanged();
             }
@@ -368,7 +370,7 @@ namespace Account
             {
                 OnCodeNameChanging(value);
                 ReportPropertyChanging("CodeName");
-                _CodeName = StructuralObject.SetValidValue(value, false);
+                _CodeName = StructuralObject.SetValidValue(value, false, "CodeName");
                 ReportPropertyChanged("CodeName");
                 OnCodeNameChanged();
             }
@@ -392,7 +394,7 @@ namespace Account
             {
                 OnEmailChanging(value);
                 ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, false);
+                _Email = StructuralObject.SetValidValue(value, false, "Email");
                 ReportPropertyChanged("Email");
                 OnEmailChanged();
             }
@@ -416,7 +418,7 @@ namespace Account
             {
                 OnLoginChanging(value);
                 ReportPropertyChanging("Login");
-                _Login = StructuralObject.SetValidValue(value, false);
+                _Login = StructuralObject.SetValidValue(value, false, "Login");
                 ReportPropertyChanged("Login");
                 OnLoginChanged();
             }
@@ -440,7 +442,7 @@ namespace Account
             {
                 OnPasswordChanging(value);
                 ReportPropertyChanging("Password");
-                _Password = StructuralObject.SetValidValue(value, false);
+                _Password = StructuralObject.SetValidValue(value, false, "Password");
                 ReportPropertyChanged("Password");
                 OnPasswordChanged();
             }
@@ -450,7 +452,7 @@ namespace Account
         partial void OnPasswordChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -477,7 +479,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -496,7 +499,7 @@ namespace Account
                 {
                     OnIdModuleChanging(value);
                     ReportPropertyChanging("IdModule");
-                    _IdModule = StructuralObject.SetValidValue(value);
+                    _IdModule = StructuralObject.SetValidValue(value, "IdModule");
                     ReportPropertyChanged("IdModule");
                     OnIdModuleChanged();
                 }
@@ -521,7 +524,7 @@ namespace Account
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -545,7 +548,7 @@ namespace Account
             {
                 OnDescriptionChanging(value);
                 ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
+                _Description = StructuralObject.SetValidValue(value, true, "Description");
                 ReportPropertyChanged("Description");
                 OnDescriptionChanged();
             }
@@ -555,7 +558,7 @@ namespace Account
         partial void OnDescriptionChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -582,7 +585,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -601,7 +605,7 @@ namespace Account
                 {
                     OnIdPermissionChanging(value);
                     ReportPropertyChanging("IdPermission");
-                    _IdPermission = StructuralObject.SetValidValue(value);
+                    _IdPermission = StructuralObject.SetValidValue(value, "IdPermission");
                     ReportPropertyChanged("IdPermission");
                     OnIdPermissionChanged();
                 }
@@ -626,7 +630,7 @@ namespace Account
             {
                 OnIdModuleChanging(value);
                 ReportPropertyChanging("IdModule");
-                _IdModule = StructuralObject.SetValidValue(value);
+                _IdModule = StructuralObject.SetValidValue(value, "IdModule");
                 ReportPropertyChanged("IdModule");
                 OnIdModuleChanged();
             }
@@ -636,7 +640,7 @@ namespace Account
         partial void OnIdModuleChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -663,7 +667,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -682,7 +687,7 @@ namespace Account
                 {
                     OnIdProfileChanging(value);
                     ReportPropertyChanging("IdProfile");
-                    _IdProfile = StructuralObject.SetValidValue(value);
+                    _IdProfile = StructuralObject.SetValidValue(value, "IdProfile");
                     ReportPropertyChanged("IdProfile");
                     OnIdProfileChanged();
                 }
@@ -707,7 +712,7 @@ namespace Account
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -717,7 +722,7 @@ namespace Account
         partial void OnNameChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -752,7 +757,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -771,7 +777,7 @@ namespace Account
                 {
                     OnIdProfileChanging(value);
                     ReportPropertyChanging("IdProfile");
-                    _IdProfile = StructuralObject.SetValidValue(value);
+                    _IdProfile = StructuralObject.SetValidValue(value, "IdProfile");
                     ReportPropertyChanged("IdProfile");
                     OnIdProfileChanged();
                 }
@@ -798,7 +804,7 @@ namespace Account
                 {
                     OnIdPermissionChanging(value);
                     ReportPropertyChanging("IdPermission");
-                    _IdPermission = StructuralObject.SetValidValue(value);
+                    _IdPermission = StructuralObject.SetValidValue(value, "IdPermission");
                     ReportPropertyChanged("IdPermission");
                     OnIdPermissionChanged();
                 }
@@ -823,7 +829,7 @@ namespace Account
             {
                 OnCreateChanging(value);
                 ReportPropertyChanging("Create");
-                _Create = StructuralObject.SetValidValue(value);
+                _Create = StructuralObject.SetValidValue(value, "Create");
                 ReportPropertyChanged("Create");
                 OnCreateChanged();
             }
@@ -847,7 +853,7 @@ namespace Account
             {
                 OnReadChanging(value);
                 ReportPropertyChanging("Read");
-                _Read = StructuralObject.SetValidValue(value);
+                _Read = StructuralObject.SetValidValue(value, "Read");
                 ReportPropertyChanged("Read");
                 OnReadChanged();
             }
@@ -871,7 +877,7 @@ namespace Account
             {
                 OnUpdateChanging(value);
                 ReportPropertyChanging("Update");
-                _Update = StructuralObject.SetValidValue(value);
+                _Update = StructuralObject.SetValidValue(value, "Update");
                 ReportPropertyChanged("Update");
                 OnUpdateChanged();
             }
@@ -895,7 +901,7 @@ namespace Account
             {
                 OnDeleteChanging(value);
                 ReportPropertyChanging("Delete");
-                _Delete = StructuralObject.SetValidValue(value);
+                _Delete = StructuralObject.SetValidValue(value, "Delete");
                 ReportPropertyChanged("Delete");
                 OnDeleteChanged();
             }
@@ -905,7 +911,7 @@ namespace Account
         partial void OnDeleteChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -938,7 +944,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -957,7 +964,7 @@ namespace Account
                 {
                     OnIdWebSiteChanging(value);
                     ReportPropertyChanging("IdWebSite");
-                    _IdWebSite = StructuralObject.SetValidValue(value);
+                    _IdWebSite = StructuralObject.SetValidValue(value, "IdWebSite");
                     ReportPropertyChanged("IdWebSite");
                     OnIdWebSiteChanged();
                 }
@@ -982,7 +989,7 @@ namespace Account
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -1006,7 +1013,7 @@ namespace Account
             {
                 OnIsMaintenanceChanging(value);
                 ReportPropertyChanging("IsMaintenance");
-                _IsMaintenance = StructuralObject.SetValidValue(value);
+                _IsMaintenance = StructuralObject.SetValidValue(value, "IsMaintenance");
                 ReportPropertyChanged("IsMaintenance");
                 OnIsMaintenanceChanged();
             }
@@ -1030,7 +1037,7 @@ namespace Account
             {
                 OnDomainChanging(value);
                 ReportPropertyChanging("Domain");
-                _Domain = StructuralObject.SetValidValue(value, false);
+                _Domain = StructuralObject.SetValidValue(value, false, "Domain");
                 ReportPropertyChanged("Domain");
                 OnDomainChanged();
             }
@@ -1054,7 +1061,7 @@ namespace Account
             {
                 OnDomainGipoChanging(value);
                 ReportPropertyChanging("DomainGipo");
-                _DomainGipo = StructuralObject.SetValidValue(value, false);
+                _DomainGipo = StructuralObject.SetValidValue(value, false, "DomainGipo");
                 ReportPropertyChanged("DomainGipo");
                 OnDomainGipoChanged();
             }
@@ -1064,7 +1071,7 @@ namespace Account
         partial void OnDomainGipoChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -1089,7 +1096,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1108,7 +1116,7 @@ namespace Account
                 {
                     OnIdWebSiteChanging(value);
                     ReportPropertyChanging("IdWebSite");
-                    _IdWebSite = StructuralObject.SetValidValue(value);
+                    _IdWebSite = StructuralObject.SetValidValue(value, "IdWebSite");
                     ReportPropertyChanged("IdWebSite");
                     OnIdWebSiteChanged();
                 }
@@ -1119,7 +1127,7 @@ namespace Account
         partial void OnIdWebSiteChanged();
 
         #endregion
-    
+
     }
     
     /// <summary>
@@ -1146,7 +1154,8 @@ namespace Account
         }
 
         #endregion
-        #region Primitive Properties
+
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1165,7 +1174,7 @@ namespace Account
                 {
                     OnIdWebSiteChanging(value);
                     ReportPropertyChanging("IdWebSite");
-                    _IdWebSite = StructuralObject.SetValidValue(value);
+                    _IdWebSite = StructuralObject.SetValidValue(value, "IdWebSite");
                     ReportPropertyChanged("IdWebSite");
                     OnIdWebSiteChanged();
                 }
@@ -1192,7 +1201,7 @@ namespace Account
                 {
                     OnIdModuleChanging(value);
                     ReportPropertyChanging("IdModule");
-                    _IdModule = StructuralObject.SetValidValue(value);
+                    _IdModule = StructuralObject.SetValidValue(value, "IdModule");
                     ReportPropertyChanged("IdModule");
                     OnIdModuleChanged();
                 }
@@ -1203,9 +1212,9 @@ namespace Account
         partial void OnIdModuleChanged();
 
         #endregion
-    
+
     }
 
     #endregion
-    
+
 }

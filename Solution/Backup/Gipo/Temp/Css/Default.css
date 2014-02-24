@@ -1,0 +1,28 @@
+﻿/* CSS Document */
+body{
+	margin:0;
+	padding:0;
+	background-image:url("bg.jpg");
+	font-family: Trebuchet MS;
+	font-size:16px;
+	color:#31373c;
+	outline: none;
+}
+
+div
+{
+    font-family: Trebuchet MS;
+    font-weight:bold;    
+}
+
+ul
+{
+	margin:0;
+	padding:6px;    
+}
+
+li
+{
+	margin:0;
+	padding:6px;    
+}
