@@ -98,6 +98,16 @@ namespace Account
             }
         }
 
+        private static string _PathAndQuery;
+        public static string PathAndQuery
+        {
+            get
+            {
+                _PathAndQuery = HttpContext.Current.Request.Url.PathAndQuery;
+                return _PathAndQuery;
+            }
+        }
+
         public static string GetConnectionStringEntity(string Entity)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ModuleEntities"].ConnectionString;

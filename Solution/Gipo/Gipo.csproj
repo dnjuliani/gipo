@@ -86,8 +86,14 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Temp\Css\Default.css" />
-    <Content Include="Temp\Img\Bg.jpg" />
-    <Content Include="Temp\Js\Default.js" />
+    <Content Include="Temp\Css\Fonts.css" />
+    <Content Include="Temp\Img\bg01.png" />
+    <Content Include="Temp\Img\pic01.jpg" />
+    <Content Include="Temp\Img\pic02.jpg" />
+    <Content Include="Temp\Img\pic03.jpg" />
+    <Content Include="Temp\Img\pic04.jpg" />
+    <Content Include="Temp\Img\pic05.jpg" />
+    <Content Include="Temp\Js\jquery.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -7,6 +7,7 @@ using System.Xml;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using System.Net;
+using Portal.Control;
 
 namespace Portal.Services
 {
@@ -101,55 +102,35 @@ namespace Portal.Services
             }
         }
 
-        public static string RenderControls(string contentHtml)
+        /// <summary>
+        /// GIPO: Retorna HTML com todos os Controles, Javascripts e CSSs renderizados
+        /// </summary>
+        public static string Render(string contentHtml)
         {
-            HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+            //TODO: RenderJS
+            //TODO: RenderCSS
+            return ControlService.RenderControls(contentHtml);
+        }
 
-            HtmlAgilityPack.HtmlNode headNode;
-            HtmlAgilityPack.HtmlNode bodyNode;
-
-            IEnumerable<HtmlAgilityPack.HtmlNode> headScripts;
-            IEnumerable<HtmlAgilityPack.HtmlNode> headControls;
-            IEnumerable<HtmlAgilityPack.HtmlNode> bodyScripts;
-            IEnumerable<HtmlAgilityPack.HtmlNode> bodyControls;
-
-            htmlDoc.LoadHtml(contentHtml);
-
-            if (htmlDoc.ParseErrors != null && htmlDoc.ParseErrors.Count() > 0)
-            {
-                //O QUE FAZER QUANDO O HTML ESTÁ COM ERRO?
-            }
-            else
-            {
-                if (htmlDoc.DocumentNode != null)
-                {
-                    headNode = htmlDoc.DocumentNode.SelectSingleNode("//head");
-                    bodyNode = htmlDoc.DocumentNode.SelectSingleNode("//body");
-
-                    if (headNode != null)
-                    {
-                        headScripts = headNode.ChildNodes.Where(cn => "script".Equals(cn.Name));
-                        headControls = headNode.ChildNodes.Where(cn => "cc".Equals(cn.Name));
-                    }
-                    
-                    if (bodyNode != null)
-                    {
-                        bodyScripts = bodyNode.ChildNodes.Where(cn => "script".Equals(cn.Name));
-                        bodyControls = bodyNode.ChildNodes.Where(cn => "cc".Equals(cn.Name));
-                    }
-                }
-            }
-
+        /// <summary>
+        /// GIPO: Retorna Url a ser redirecionado
+        /// </summary>
+        public static string GetUrlMappingTo(int? idWebSite, string UrlFrom)
+        {
             PortalEntities portal = new PortalEntities(Account.Context.GetConnectionStringEntity("Portal"));
-            IEnumerable<Portal.porPagePartial> queryPagePartial;
+            IEnumerable<Portal.porUrlMapping> queryUrlMapping;
+            string UrlTo = null;
 
-            queryPagePartial =  from pp in portal.porPagePartials
-                                where pp.Name.Equals("header")
-                                select pp;
+            queryUrlMapping =   from um in portal.porUrlMappings
+                                where um.IdWebSite == idWebSite && um.UrlFrom.Equals(UrlFrom) && (um.DtFrom <= DateTime.Now && um.DtTo >= DateTime.Now)
+                                select um;
 
-            contentHtml = contentHtml.Replace("<cc:pagePartial name=\"header\" />", queryPagePartial.FirstOrDefault().Html);
+            if (queryUrlMapping.FirstOrDefault() != null)
+            {
+                UrlTo = queryUrlMapping.FirstOrDefault().UrlTo;
+            }
 
-            return contentHtml;
+            return UrlTo;
         }
     }
 }
