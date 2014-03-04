@@ -4,16 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AccountModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AccountModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="AccountModelStoreContainer">
-          <EntitySet Name="accAdministrator" EntityType="AccountModel.Store.accAdministrator" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accModule" EntityType="AccountModel.Store.accModule" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accPermission" EntityType="AccountModel.Store.accPermission" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accProfile" EntityType="AccountModel.Store.accProfile" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accProfilePermission" EntityType="AccountModel.Store.accProfilePermission" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accWebSite" EntityType="AccountModel.Store.accWebSite" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accWebSiteConfig" EntityType="AccountModel.Store.accWebSiteConfig" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="accWebSiteModule" EntityType="AccountModel.Store.accWebSiteModule" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="accAdministrator" EntityType="AccountModel.Store.accAdministrator" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accModule" EntityType="AccountModel.Store.accModule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accPermission" EntityType="AccountModel.Store.accPermission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accProfile" EntityType="AccountModel.Store.accProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accProfilePermission" EntityType="AccountModel.Store.accProfilePermission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accWebSite" EntityType="AccountModel.Store.accWebSite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accWebSiteConfig" EntityType="AccountModel.Store.accWebSiteConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="accWebSiteModule" EntityType="AccountModel.Store.accWebSiteModule" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="accAdministrator">
           <Key>
@@ -75,6 +75,8 @@
             <PropertyRef Name="IdWebSite" />
           </Key>
           <Property Name="IdWebSite" Type="int" Nullable="false" />
+          <Property Name="IdGoogleTagManager" Type="varchar" MaxLength="16" />
+          <Property Name="IdGoogleAnalytics" Type="varchar" MaxLength="16" />
         </EntityType>
         <EntityType Name="accWebSiteModule">
           <Key>
@@ -94,9 +96,9 @@
           <EntitySet Name="accPermissions" EntityType="AccountModel.accPermission" />
           <EntitySet Name="accProfiles" EntityType="AccountModel.accProfile" />
           <EntitySet Name="accProfilePermissions" EntityType="AccountModel.accProfilePermission" />
-          <EntitySet Name="accWebSiteConfigs" EntityType="AccountModel.accWebSiteConfig" />
           <EntitySet Name="accWebSiteModules" EntityType="AccountModel.accWebSiteModule" />
           <EntitySet Name="accWebSites" EntityType="AccountModel.accWebSite" />
+          <EntitySet Name="accWebSiteConfigs" EntityType="AccountModel.accWebSiteConfig" />
         </EntityContainer>
         <EntityType Name="accAdministrator">
           <Key>
@@ -143,12 +145,6 @@
           <Property Name="Update" Type="Boolean" Nullable="false" />
           <Property Name="Delete" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="accWebSiteConfig">
-          <Key>
-            <PropertyRef Name="IdWebSite" />
-          </Key>
-          <Property Name="IdWebSite" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="accWebSiteModule">
           <Key>
             <PropertyRef Name="IdWebSite" />
@@ -166,6 +162,14 @@
           <Property Type="Boolean" Name="IsMaintenance" Nullable="false" />
           <Property Type="String" Name="Domain" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DomainGipo" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="accWebSiteConfig">
+          <Key>
+            <PropertyRef Name="IdWebSite" />
+          </Key>
+          <Property Type="Int32" Name="IdWebSite" Nullable="false" />
+          <Property Type="String" Name="IdGoogleTagManager" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdGoogleAnalytics" MaxLength="16" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -202,9 +206,6 @@
             <ScalarProperty Name="Update" ColumnName="Update" />
             <ScalarProperty Name="Delete" ColumnName="Delete" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="accWebSiteConfigs"><EntityTypeMapping TypeName="AccountModel.accWebSiteConfig"><MappingFragment StoreEntitySet="accWebSiteConfig">
-            <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="accWebSiteModules"><EntityTypeMapping TypeName="AccountModel.accWebSiteModule"><MappingFragment StoreEntitySet="accWebSiteModule">
             <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
             <ScalarProperty Name="IdModule" ColumnName="IdModule" />
@@ -216,6 +217,15 @@
                 <ScalarProperty Name="Domain" ColumnName="Domain" />
                 <ScalarProperty Name="IsMaintenance" ColumnName="IsMaintenance" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accWebSiteConfigs">
+            <EntityTypeMapping TypeName="AccountModel.accWebSiteConfig">
+              <MappingFragment StoreEntitySet="accWebSiteConfig">
+                <ScalarProperty Name="IdGoogleAnalytics" ColumnName="IdGoogleAnalytics" />
+                <ScalarProperty Name="IdGoogleTagManager" ColumnName="IdGoogleTagManager" />
                 <ScalarProperty Name="IdWebSite" ColumnName="IdWebSite" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -246,9 +256,9 @@
         <EntityTypeShape EntityType="AccountModel.accPermission" Width="1.5" PointX="0.75" PointY="3.75" Height="1.4033821614583322" IsExpanded="true" />
         <EntityTypeShape EntityType="AccountModel.accProfile" Width="1.5" PointX="2.75" PointY="3.75" Height="1.4033821614583335" IsExpanded="true" />
         <EntityTypeShape EntityType="AccountModel.accProfilePermission" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccountModel.accWebSiteConfig" Width="1.5" PointX="6.75" PointY="0.75" Height="1.2110807291666674" IsExpanded="true" />
         <EntityTypeShape EntityType="AccountModel.accWebSiteModule" Width="1.5" PointX="0.75" PointY="6.75" Height="1.4033821614583317" IsExpanded="true" />
         <EntityTypeShape EntityType="AccountModel.accWebSite" Width="1.5" PointX="5.375" PointY="3.75" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="AccountModel.accWebSiteConfig" Width="1.5" PointX="3" PointY="6.625" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -148,22 +148,6 @@ namespace Account
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<accWebSiteConfig> accWebSiteConfigs
-        {
-            get
-            {
-                if ((_accWebSiteConfigs == null))
-                {
-                    _accWebSiteConfigs = base.CreateObjectSet<accWebSiteConfig>("accWebSiteConfigs");
-                }
-                return _accWebSiteConfigs;
-            }
-        }
-        private ObjectSet<accWebSiteConfig> _accWebSiteConfigs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<accWebSiteModule> accWebSiteModules
         {
             get
@@ -192,6 +176,22 @@ namespace Account
             }
         }
         private ObjectSet<accWebSite> _accWebSites;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<accWebSiteConfig> accWebSiteConfigs
+        {
+            get
+            {
+                if ((_accWebSiteConfigs == null))
+                {
+                    _accWebSiteConfigs = base.CreateObjectSet<accWebSiteConfig>("accWebSiteConfigs");
+                }
+                return _accWebSiteConfigs;
+            }
+        }
+        private ObjectSet<accWebSiteConfig> _accWebSiteConfigs;
 
         #endregion
 
@@ -238,14 +238,6 @@ namespace Account
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the accWebSiteConfigs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToaccWebSiteConfigs(accWebSiteConfig accWebSiteConfig)
-        {
-            base.AddObject("accWebSiteConfigs", accWebSiteConfig);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the accWebSiteModules EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToaccWebSiteModules(accWebSiteModule accWebSiteModule)
@@ -259,6 +251,14 @@ namespace Account
         public void AddToaccWebSites(accWebSite accWebSite)
         {
             base.AddObject("accWebSites", accWebSite);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the accWebSiteConfigs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToaccWebSiteConfigs(accWebSiteConfig accWebSiteConfig)
+        {
+            base.AddObject("accWebSiteConfigs", accWebSiteConfig);
         }
 
         #endregion
@@ -1125,6 +1125,54 @@ namespace Account
         private global::System.Int32 _IdWebSite;
         partial void OnIdWebSiteChanging(global::System.Int32 value);
         partial void OnIdWebSiteChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String IdGoogleTagManager
+        {
+            get
+            {
+                return _IdGoogleTagManager;
+            }
+            set
+            {
+                OnIdGoogleTagManagerChanging(value);
+                ReportPropertyChanging("IdGoogleTagManager");
+                _IdGoogleTagManager = StructuralObject.SetValidValue(value, true, "IdGoogleTagManager");
+                ReportPropertyChanged("IdGoogleTagManager");
+                OnIdGoogleTagManagerChanged();
+            }
+        }
+        private global::System.String _IdGoogleTagManager;
+        partial void OnIdGoogleTagManagerChanging(global::System.String value);
+        partial void OnIdGoogleTagManagerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String IdGoogleAnalytics
+        {
+            get
+            {
+                return _IdGoogleAnalytics;
+            }
+            set
+            {
+                OnIdGoogleAnalyticsChanging(value);
+                ReportPropertyChanging("IdGoogleAnalytics");
+                _IdGoogleAnalytics = StructuralObject.SetValidValue(value, true, "IdGoogleAnalytics");
+                ReportPropertyChanged("IdGoogleAnalytics");
+                OnIdGoogleAnalyticsChanged();
+            }
+        }
+        private global::System.String _IdGoogleAnalytics;
+        partial void OnIdGoogleAnalyticsChanging(global::System.String value);
+        partial void OnIdGoogleAnalyticsChanged();
 
         #endregion
 
