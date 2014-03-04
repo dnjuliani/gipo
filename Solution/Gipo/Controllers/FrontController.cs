@@ -18,10 +18,11 @@ namespace Gipo.Controllers
                 if (!string.IsNullOrWhiteSpace(urlMappingRedirect))
 	            {
 		             Response.RedirectPermanent(urlMappingRedirect);
-	            }                
+	            }
 
                 Portal.porPage page = Portal.Services.PortalService.GetByUrl(Account.Context.WebSite.IdWebSite, path);
                 string html = Portal.Services.PortalService.Render(page.Html);
+
                 ViewData["Html"] = html;
             }
             return View();

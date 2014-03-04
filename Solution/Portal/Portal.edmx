@@ -4,23 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="tela_p3Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="tela_p3ModelStoreContainer">
-          <EntitySet Name="porControl" EntityType="tela_p3Model.Store.porControl" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="porFolder" EntityType="tela_p3Model.Store.porFolder" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="porPage" EntityType="tela_p3Model.Store.porPage" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="porPagePartial" EntityType="tela_p3Model.Store.porPagePartial" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="porTemplate" EntityType="tela_p3Model.Store.porTemplate" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="porUrlMapping" EntityType="tela_p3Model.Store.porUrlMapping" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <AssociationSet Name="FK_porFolder_IdFolderParent" Association="tela_p3Model.Store.FK_porFolder_IdFolderParent">
+    <Schema Namespace="PortalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PortalModelStoreContainer">
+          <EntitySet Name="porControl" EntityType="PortalModel.Store.porControl" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="porFolder" EntityType="PortalModel.Store.porFolder" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="porPage" EntityType="PortalModel.Store.porPage" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="porPagePartial" EntityType="PortalModel.Store.porPagePartial" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="porTemplate" EntityType="PortalModel.Store.porTemplate" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="porUrlMapping" EntityType="PortalModel.Store.porUrlMapping" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <AssociationSet Name="FK_porFolder_IdFolderParent" Association="PortalModel.Store.FK_porFolder_IdFolderParent">
             <End Role="porFolder" EntitySet="porFolder" />
             <End Role="porFolder1" EntitySet="porFolder" />
           </AssociationSet>
-          <AssociationSet Name="FK_porPage_IdFolder" Association="tela_p3Model.Store.FK_porPage_IdFolder">
+          <AssociationSet Name="FK_porPage_IdFolder" Association="PortalModel.Store.FK_porPage_IdFolder">
             <End Role="porFolder" EntitySet="porFolder" />
             <End Role="porPage" EntitySet="porPage" />
           </AssociationSet>
-          <AssociationSet Name="FK_porPage_IdTemplate" Association="tela_p3Model.Store.FK_porPage_IdTemplate">
+          <AssociationSet Name="FK_porPage_IdTemplate" Association="PortalModel.Store.FK_porPage_IdTemplate">
             <End Role="porTemplate" EntitySet="porTemplate" />
             <End Role="porPage" EntitySet="porPage" />
           </AssociationSet>
@@ -83,8 +83,8 @@
           <Property Name="DtTo" Type="smalldatetime" />
         </EntityType>
         <Association Name="FK_porFolder_IdFolderParent">
-          <End Role="porFolder" Type="tela_p3Model.Store.porFolder" Multiplicity="0..1" />
-          <End Role="porFolder1" Type="tela_p3Model.Store.porFolder" Multiplicity="*" />
+          <End Role="porFolder" Type="PortalModel.Store.porFolder" Multiplicity="0..1" />
+          <End Role="porFolder1" Type="PortalModel.Store.porFolder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="porFolder">
               <PropertyRef Name="IdFolder" />
@@ -95,10 +95,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_porPage_IdFolder">
-          <End Role="porFolder" Type="tela_p3Model.Store.porFolder" Multiplicity="1">
+          <End Role="porFolder" Type="PortalModel.Store.porFolder" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="porPage" Type="tela_p3Model.Store.porPage" Multiplicity="*" />
+          <End Role="porPage" Type="PortalModel.Store.porPage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="porFolder">
               <PropertyRef Name="IdFolder" />
@@ -109,8 +109,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_porPage_IdTemplate">
-          <End Role="porTemplate" Type="tela_p3Model.Store.porTemplate" Multiplicity="0..1" />
-          <End Role="porPage" Type="tela_p3Model.Store.porPage" Multiplicity="*" />
+          <End Role="porTemplate" Type="PortalModel.Store.porTemplate" Multiplicity="0..1" />
+          <End Role="porPage" Type="PortalModel.Store.porPage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="porTemplate">
               <PropertyRef Name="IdTemplate" />
@@ -123,26 +123,26 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="tela_p3Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PortalModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PortalEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-          <EntitySet Name="porControls" EntityType="tela_p3Model.porControl" />
-          <EntitySet Name="porFolders" EntityType="tela_p3Model.porFolder" />
-          <EntitySet Name="porPages" EntityType="tela_p3Model.porPage" />
-          <EntitySet Name="porTemplates" EntityType="tela_p3Model.porTemplate" />
-          <EntitySet Name="porUrlMappings" EntityType="tela_p3Model.porUrlMapping" />
-          <AssociationSet Name="FK_porFolder_IdFolderParent" Association="tela_p3Model.FK_porFolder_IdFolderParent">
+          <EntitySet Name="porControls" EntityType="PortalModel.porControl" />
+          <EntitySet Name="porFolders" EntityType="PortalModel.porFolder" />
+          <EntitySet Name="porPages" EntityType="PortalModel.porPage" />
+          <EntitySet Name="porTemplates" EntityType="PortalModel.porTemplate" />
+          <EntitySet Name="porUrlMappings" EntityType="PortalModel.porUrlMapping" />
+          <AssociationSet Name="FK_porFolder_IdFolderParent" Association="PortalModel.FK_porFolder_IdFolderParent">
             <End Role="porFolder" EntitySet="porFolders" />
             <End Role="porFolder1" EntitySet="porFolders" />
           </AssociationSet>
-          <AssociationSet Name="FK_porPage_IdFolder" Association="tela_p3Model.FK_porPage_IdFolder">
+          <AssociationSet Name="FK_porPage_IdFolder" Association="PortalModel.FK_porPage_IdFolder">
             <End Role="porFolder" EntitySet="porFolders" />
             <End Role="porPage" EntitySet="porPages" />
           </AssociationSet>
-          <AssociationSet Name="FK_porPage_IdTemplate" Association="tela_p3Model.FK_porPage_IdTemplate">
+          <AssociationSet Name="FK_porPage_IdTemplate" Association="PortalModel.FK_porPage_IdTemplate">
             <End Role="porTemplate" EntitySet="porTemplates" />
             <End Role="porPage" EntitySet="porPages" />
           </AssociationSet>
-          <EntitySet Name="porPagePartials" EntityType="tela_p3Model.porPagePartial" />
+          <EntitySet Name="porPagePartials" EntityType="PortalModel.porPagePartial" />
         </EntityContainer>
         <EntityType Name="porControl">
           <Key>
@@ -161,9 +161,9 @@
           <Property Type="Int32" Name="IdWebSite" Nullable="false" />
           <Property Type="Int32" Name="IdFolderParent" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="porFolder1" Relationship="tela_p3Model.FK_porFolder_IdFolderParent" FromRole="porFolder" ToRole="porFolder1" />
-          <NavigationProperty Name="porFolder2" Relationship="tela_p3Model.FK_porFolder_IdFolderParent" FromRole="porFolder1" ToRole="porFolder" />
-          <NavigationProperty Name="porPages" Relationship="tela_p3Model.FK_porPage_IdFolder" FromRole="porFolder" ToRole="porPage" />
+          <NavigationProperty Name="porFolder1" Relationship="PortalModel.FK_porFolder_IdFolderParent" FromRole="porFolder" ToRole="porFolder1" />
+          <NavigationProperty Name="porFolder2" Relationship="PortalModel.FK_porFolder_IdFolderParent" FromRole="porFolder1" ToRole="porFolder" />
+          <NavigationProperty Name="porPages" Relationship="PortalModel.FK_porPage_IdFolder" FromRole="porFolder" ToRole="porPage" />
         </EntityType>
         <EntityType Name="porPage">
           <Key>
@@ -176,8 +176,8 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Url" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Html" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="porFolder" Relationship="tela_p3Model.FK_porPage_IdFolder" FromRole="porPage" ToRole="porFolder" />
-          <NavigationProperty Name="porTemplate" Relationship="tela_p3Model.FK_porPage_IdTemplate" FromRole="porPage" ToRole="porTemplate" />
+          <NavigationProperty Name="porFolder" Relationship="PortalModel.FK_porPage_IdFolder" FromRole="porPage" ToRole="porFolder" />
+          <NavigationProperty Name="porTemplate" Relationship="PortalModel.FK_porPage_IdTemplate" FromRole="porPage" ToRole="porTemplate" />
         </EntityType>
         <EntityType Name="porTemplate">
           <Key>
@@ -186,7 +186,7 @@
           <Property Type="Int32" Name="IdTemplate" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Html" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="porPages" Relationship="tela_p3Model.FK_porPage_IdTemplate" FromRole="porTemplate" ToRole="porPage" />
+          <NavigationProperty Name="porPages" Relationship="PortalModel.FK_porPage_IdTemplate" FromRole="porTemplate" ToRole="porPage" />
         </EntityType>
         <EntityType Name="porUrlMapping">
           <Key>
@@ -200,8 +200,8 @@
           <Property Type="DateTime" Name="DtTo" />
         </EntityType>
         <Association Name="FK_porFolder_IdFolderParent">
-          <End Type="tela_p3Model.porFolder" Role="porFolder" Multiplicity="0..1" />
-          <End Type="tela_p3Model.porFolder" Role="porFolder1" Multiplicity="*" />
+          <End Type="PortalModel.porFolder" Role="porFolder" Multiplicity="0..1" />
+          <End Type="PortalModel.porFolder" Role="porFolder1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="porFolder">
               <PropertyRef Name="IdFolder" />
@@ -212,8 +212,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_porPage_IdFolder">
-          <End Type="tela_p3Model.porFolder" Role="porFolder" Multiplicity="1" />
-          <End Type="tela_p3Model.porPage" Role="porPage" Multiplicity="*" />
+          <End Type="PortalModel.porFolder" Role="porFolder" Multiplicity="1" />
+          <End Type="PortalModel.porPage" Role="porPage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="porFolder">
               <PropertyRef Name="IdFolder" />
@@ -224,8 +224,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_porPage_IdTemplate">
-          <End Type="tela_p3Model.porTemplate" Role="porTemplate" Multiplicity="0..1" />
-          <End Type="tela_p3Model.porPage" Role="porPage" Multiplicity="*" />
+          <End Type="PortalModel.porTemplate" Role="porTemplate" Multiplicity="0..1" />
+          <End Type="PortalModel.porPage" Role="porPage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="porTemplate">
               <PropertyRef Name="IdTemplate" />
@@ -248,9 +248,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="tela_p3ModelStoreContainer" CdmEntityContainer="PortalEntities">
+        <EntityContainerMapping StorageEntityContainer="PortalModelStoreContainer" CdmEntityContainer="PortalEntities">
           <EntitySetMapping Name="porControls">
-            <EntityTypeMapping TypeName="tela_p3Model.porControl">
+            <EntityTypeMapping TypeName="PortalModel.porControl">
               <MappingFragment StoreEntitySet="porControl">
                 <ScalarProperty Name="Route" ColumnName="Route" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -260,7 +260,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="porFolders">
-            <EntityTypeMapping TypeName="tela_p3Model.porFolder">
+            <EntityTypeMapping TypeName="PortalModel.porFolder">
               <MappingFragment StoreEntitySet="porFolder">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdFolderParent" ColumnName="IdFolderParent" />
@@ -270,7 +270,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="porPages">
-            <EntityTypeMapping TypeName="tela_p3Model.porPage">
+            <EntityTypeMapping TypeName="PortalModel.porPage">
               <MappingFragment StoreEntitySet="porPage">
                 <ScalarProperty Name="Html" ColumnName="Html" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
@@ -283,7 +283,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="porTemplates">
-            <EntityTypeMapping TypeName="tela_p3Model.porTemplate">
+            <EntityTypeMapping TypeName="PortalModel.porTemplate">
               <MappingFragment StoreEntitySet="porTemplate">
                 <ScalarProperty Name="Html" ColumnName="Html" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -292,7 +292,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="porUrlMappings">
-            <EntityTypeMapping TypeName="tela_p3Model.porUrlMapping">
+            <EntityTypeMapping TypeName="PortalModel.porUrlMapping">
               <MappingFragment StoreEntitySet="porUrlMapping">
                 <ScalarProperty Name="DtTo" ColumnName="DtTo" />
                 <ScalarProperty Name="DtFrom" ColumnName="DtFrom" />
@@ -303,7 +303,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="porPagePartials">
-            <EntityTypeMapping TypeName="tela_p3Model.porPagePartial">
+            <EntityTypeMapping TypeName="PortalModel.porPagePartial">
               <MappingFragment StoreEntitySet="porPagePartial">
                 <ScalarProperty Name="Html" ColumnName="Html" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -332,26 +332,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Portal" ZoomLevel="97">
-        <EntityTypeShape EntityType="tela_p3Model.porControl" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="tela_p3Model.porFolder" Width="1.5" PointX="2.375" PointY="1.25" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="tela_p3Model.porPage" Width="1.5" PointX="4.25" PointY="1" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="tela_p3Model.porTemplate" Width="1.5" PointX="6.125" PointY="1.5" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="tela_p3Model.porUrlMapping" Width="1.5" PointX="3" PointY="4.25" Height="1.9802864583333317" />
-        <AssociationConnector Association="tela_p3Model.FK_porFolder_IdFolderParent">
+        <EntityTypeShape EntityType="PortalModel.porControl" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="PortalModel.porFolder" Width="1.5" PointX="2.375" PointY="1.25" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="PortalModel.porPage" Width="1.5" PointX="4.25" PointY="1" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="PortalModel.porTemplate" Width="1.5" PointX="6.125" PointY="1.5" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="PortalModel.porUrlMapping" Width="1.5" PointX="3" PointY="4.25" Height="1.9802864583333317" />
+        <AssociationConnector Association="PortalModel.FK_porFolder_IdFolderParent">
           <ConnectorPoint PointX="2.9069230769230767" PointY="3.6148893229166674" />
           <ConnectorPoint PointX="2.9069230769230767" PointY="3.8648893229166674" />
           <ConnectorPoint PointX="3.3534615384615383" PointY="3.8648893229166674" />
           <ConnectorPoint PointX="3.3534615384615383" PointY="3.6148893229166674" />
         </AssociationConnector>
-        <AssociationConnector Association="tela_p3Model.FK_porPage_IdFolder">
+        <AssociationConnector Association="PortalModel.FK_porPage_IdFolder">
           <ConnectorPoint PointX="3.875" PointY="2.4324446614583337" />
           <ConnectorPoint PointX="4.25" PointY="2.4324446614583337" />
         </AssociationConnector>
-        <AssociationConnector Association="tela_p3Model.FK_porPage_IdTemplate">
+        <AssociationConnector Association="PortalModel.FK_porPage_IdTemplate">
           <ConnectorPoint PointX="6.125" PointY="2.3939925130208337" />
           <ConnectorPoint PointX="5.75" PointY="2.3939925130208337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="tela_p3Model.porPagePartial" Width="1.5" PointX="0.5" PointY="1.625" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="PortalModel.porPagePartial" Width="1.5" PointX="0.5" PointY="1.625" Height="1.5956835937499996" />
       </Diagram>
     </Diagrams>
   </Designer>

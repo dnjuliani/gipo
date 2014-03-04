@@ -19,9 +19,9 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_porFolder_IdFolderParent", "porFolder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.porFolder), "porFolder1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porFolder), true)]
-[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_porPage_IdFolder", "porFolder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Portal.porFolder), "porPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porPage), true)]
-[assembly: EdmRelationshipAttribute("tela_p3Model", "FK_porPage_IdTemplate", "porTemplate", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.porTemplate), "porPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porPage), true)]
+[assembly: EdmRelationshipAttribute("PortalModel", "FK_porFolder_IdFolderParent", "porFolder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.porFolder), "porFolder1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porFolder), true)]
+[assembly: EdmRelationshipAttribute("PortalModel", "FK_porPage_IdFolder", "porFolder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Portal.porFolder), "porPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porPage), true)]
+[assembly: EdmRelationshipAttribute("PortalModel", "FK_porPage_IdTemplate", "porTemplate", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Portal.porTemplate), "porPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Portal.porPage), true)]
 
 #endregion
 
@@ -232,7 +232,7 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porControl")]
+    [EdmEntityTypeAttribute(NamespaceName="PortalModel", Name="porControl")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class porControl : EntityObject
@@ -366,7 +366,7 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porFolder")]
+    [EdmEntityTypeAttribute(NamespaceName="PortalModel", Name="porFolder")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class porFolder : EntityObject
@@ -501,18 +501,18 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porFolder_IdFolderParent", "porFolder1")]
+        [EdmRelationshipNavigationPropertyAttribute("PortalModel", "FK_porFolder_IdFolderParent", "porFolder1")]
         public EntityCollection<porFolder> porFolder1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porFolder>("PortalModel.FK_porFolder_IdFolderParent", "porFolder1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porFolder>("PortalModel.FK_porFolder_IdFolderParent", "porFolder1", value);
                 }
             }
         }
@@ -523,16 +523,16 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porFolder_IdFolderParent", "porFolder")]
+        [EdmRelationshipNavigationPropertyAttribute("PortalModel", "FK_porFolder_IdFolderParent", "porFolder")]
         public porFolder porFolder2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("PortalModel.FK_porFolder_IdFolderParent", "porFolder").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("PortalModel.FK_porFolder_IdFolderParent", "porFolder").Value = value;
             }
         }
         /// <summary>
@@ -544,13 +544,13 @@ namespace Portal
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("PortalModel.FK_porFolder_IdFolderParent", "porFolder");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porFolder>("tela_p3Model.FK_porFolder_IdFolderParent", "porFolder", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porFolder>("PortalModel.FK_porFolder_IdFolderParent", "porFolder", value);
                 }
             }
         }
@@ -561,18 +561,18 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdFolder", "porPage")]
+        [EdmRelationshipNavigationPropertyAttribute("PortalModel", "FK_porPage_IdFolder", "porPage")]
         public EntityCollection<porPage> porPages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdFolder", "porPage");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porPage>("PortalModel.FK_porPage_IdFolder", "porPage");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdFolder", "porPage", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porPage>("PortalModel.FK_porPage_IdFolder", "porPage", value);
                 }
             }
         }
@@ -584,7 +584,7 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porPage")]
+    [EdmEntityTypeAttribute(NamespaceName="PortalModel", Name="porPage")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class porPage : EntityObject
@@ -797,16 +797,16 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdFolder", "porFolder")]
+        [EdmRelationshipNavigationPropertyAttribute("PortalModel", "FK_porPage_IdFolder", "porFolder")]
         public porFolder porFolder
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("PortalModel.FK_porPage_IdFolder", "porFolder").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("PortalModel.FK_porPage_IdFolder", "porFolder").Value = value;
             }
         }
         /// <summary>
@@ -818,13 +818,13 @@ namespace Portal
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porFolder>("PortalModel.FK_porPage_IdFolder", "porFolder");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porFolder>("tela_p3Model.FK_porPage_IdFolder", "porFolder", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porFolder>("PortalModel.FK_porPage_IdFolder", "porFolder", value);
                 }
             }
         }
@@ -835,16 +835,16 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdTemplate", "porTemplate")]
+        [EdmRelationshipNavigationPropertyAttribute("PortalModel", "FK_porPage_IdTemplate", "porTemplate")]
         public porTemplate porTemplate
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("PortalModel.FK_porPage_IdTemplate", "porTemplate").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("PortalModel.FK_porPage_IdTemplate", "porTemplate").Value = value;
             }
         }
         /// <summary>
@@ -856,13 +856,13 @@ namespace Portal
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<porTemplate>("PortalModel.FK_porPage_IdTemplate", "porTemplate");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porTemplate>("tela_p3Model.FK_porPage_IdTemplate", "porTemplate", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<porTemplate>("PortalModel.FK_porPage_IdTemplate", "porTemplate", value);
                 }
             }
         }
@@ -874,7 +874,7 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porPagePartial")]
+    [EdmEntityTypeAttribute(NamespaceName="PortalModel", Name="porPagePartial")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class porPagePartial : EntityObject
@@ -982,7 +982,7 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porTemplate")]
+    [EdmEntityTypeAttribute(NamespaceName="PortalModel", Name="porTemplate")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class porTemplate : EntityObject
@@ -1093,18 +1093,18 @@ namespace Portal
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("tela_p3Model", "FK_porPage_IdTemplate", "porPage")]
+        [EdmRelationshipNavigationPropertyAttribute("PortalModel", "FK_porPage_IdTemplate", "porPage")]
         public EntityCollection<porPage> porPages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdTemplate", "porPage");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<porPage>("PortalModel.FK_porPage_IdTemplate", "porPage");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porPage>("tela_p3Model.FK_porPage_IdTemplate", "porPage", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<porPage>("PortalModel.FK_porPage_IdTemplate", "porPage", value);
                 }
             }
         }
@@ -1116,7 +1116,7 @@ namespace Portal
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="tela_p3Model", Name="porUrlMapping")]
+    [EdmEntityTypeAttribute(NamespaceName="PortalModel", Name="porUrlMapping")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class porUrlMapping : EntityObject
