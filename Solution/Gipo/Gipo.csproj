@@ -113,29 +113,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Admin\Admin.csproj">
-      <Project>{62DD7B0E-C61A-4F0E-84BC-3B1756117FD3}</Project>
-      <Name>Admin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Connection\Connection.csproj">
-      <Project>{8A29D0FA-0218-4B3D-A047-D10AED3EB814}</Project>
-      <Name>Connection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Portal\Portal.csproj">
       <Project>{D758B671-91FA-4078-9D28-FF38547B4A02}</Project>
       <Name>Portal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Account\Account.csproj">
-      <Project>{AC7E728F-7B32-4E7B-B0DE-9A0C3D619F6D}</Project>
-      <Name>Account</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Archive\Archive.csproj">
       <Project>{7EF9E1F5-4B5C-468B-B074-85E5B721BEF5}</Project>
       <Name>Archive</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Log\Log.csproj">
-      <Project>{4A0D00B0-A809-4A00-AD68-773BF0BB9D9C}</Project>
-      <Name>Log</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

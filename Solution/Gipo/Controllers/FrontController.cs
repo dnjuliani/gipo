@@ -14,13 +14,15 @@ namespace Gipo.Controllers
         {
             if (this.HttpContext != null)
             {
-                string urlMappingRedirect = Portal.Services.PortalService.GetUrlMappingTo(Account.Context.WebSite.IdWebSite, Account.Context.PathAndQuery);
+                Portal.Context.Path = path;
+                
+                string urlMappingRedirect = Portal.Services.PortalService.GetUrlMappingTo();
                 if (!string.IsNullOrWhiteSpace(urlMappingRedirect))
 	            {
 		             Response.RedirectPermanent(urlMappingRedirect);
 	            }
 
-                Portal.porPage page = Portal.Services.PortalService.GetByUrl(Account.Context.WebSite.IdWebSite, path);
+                Portal.porPage page = Portal.Services.PortalService.GetByUrl();
                 string html = Portal.Services.PortalService.Render(page.Html);
 
                 ViewData["Html"] = html;

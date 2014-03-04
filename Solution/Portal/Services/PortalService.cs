@@ -16,7 +16,7 @@ namespace Portal.Services
         /// <summary>
         /// GIPO: Retorna objeto porPage de um WebSite a partir de uma URL
         /// </summary>
-        public static Portal.porPage GetByUrl(int? idWebSite, string path)
+        public static Portal.porPage GetByUrl()
         {
             List<string> folders = new List<string>();
             int? idPageFolderParent = null;
@@ -27,9 +27,9 @@ namespace Portal.Services
             Portal.porFolder objFolder = new Portal.porFolder();
 
             string pathFolders = "/";
-            string pathPage = path;
+            string pathPage = Context.Path;
 
-            IdentifyFolderAndPageURL(ref pathFolders, ref pathPage, path);
+            IdentifyFolderAndPageURL(ref pathFolders, ref pathPage, Context.Path);
 
             if (!string.IsNullOrWhiteSpace(pathFolders))
             {
@@ -46,7 +46,7 @@ namespace Portal.Services
                 foreach (string folder in folders)
                 {
                     queryFolder = from f in portal.porFolders
-                                  where f.IdWebSite == idWebSite && f.Name.Equals(folder) && ((idPageFolderParent == null) ? f.IdFolderParent == null : f.IdFolderParent == idPageFolderParent)
+                                  where f.IdWebSite == Account.Context.WebSite.IdWebSite && f.Name.Equals(folder) && ((idPageFolderParent == null) ? f.IdFolderParent == null : f.IdFolderParent == idPageFolderParent)
                                   select f;
 
                     objFolder = queryFolder.FirstOrDefault();
@@ -60,7 +60,7 @@ namespace Portal.Services
             }
 
             queryPage = from p in portal.porPages
-                        where p.IdWebSite == idWebSite && p.Url.Equals(pathPage) && p.IdFolder == idPageFolderParent
+                        where p.IdWebSite == Account.Context.WebSite.IdWebSite && p.Url.Equals(pathPage) && p.IdFolder == idPageFolderParent
                         select p;
 
             return queryPage.FirstOrDefault();
@@ -115,14 +115,14 @@ namespace Portal.Services
         /// <summary>
         /// GIPO: Retorna Url a ser redirecionado
         /// </summary>
-        public static string GetUrlMappingTo(int? idWebSite, string UrlFrom)
+        public static string GetUrlMappingTo()
         {
             PortalEntities portal = new PortalEntities(Account.Context.GetConnectionStringEntity("Portal"));
             IEnumerable<Portal.porUrlMapping> queryUrlMapping;
             string UrlTo = null;
 
             queryUrlMapping =   from um in portal.porUrlMappings
-                                where um.IdWebSite == idWebSite && um.UrlFrom.Equals(UrlFrom) && (um.DtFrom <= DateTime.Now && um.DtTo >= DateTime.Now)
+                                where um.IdWebSite == Account.Context.WebSite.IdWebSite && um.UrlFrom.Equals(Account.Context.PathAndQuery) && (um.DtFrom <= DateTime.Now && um.DtTo >= DateTime.Now)
                                 select um;
 
             if (queryUrlMapping.FirstOrDefault() != null)

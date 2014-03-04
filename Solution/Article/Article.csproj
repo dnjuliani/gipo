@@ -73,6 +73,7 @@
       <DependentUpon>Article.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ArticleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Article.edmx">
@@ -89,8 +90,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Account\Account.csproj">
+      <Project>{ac7e728f-7b32-4e7b-b0de-9a0c3d619f6d}</Project>
+      <Name>Account</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

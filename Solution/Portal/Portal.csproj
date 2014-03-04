@@ -73,6 +73,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context.cs" />
     <Compile Include="Control\PagePartialControl.cs" />
     <Compile Include="Portal.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -106,6 +107,10 @@
     <ProjectReference Include="..\Account\Account.csproj">
       <Project>{AC7E728F-7B32-4E7B-B0DE-9A0C3D619F6D}</Project>
       <Name>Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Article\Article.csproj">
+      <Project>{9931c2f4-1f8b-4ca8-a1a1-99d2ed95b673}</Project>
+      <Name>Article</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
